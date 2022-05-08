@@ -77,7 +77,6 @@ public class RegistrationController implements Initializable {
         Platform.exit();
     }
 
-
     public void registerButtonOnAction(ActionEvent event) throws NoSuchAlgorithmException {
         if (firstnameTextField.getText().isBlank() == false && lastnameTextField.getText().isBlank() == false && usernameTextField.getText().isBlank() == false && setPasswordField.getText().isBlank() == false && confirmPasswordField.getText().isBlank() == false && emailTextField.getText().isBlank() == false) {
             if (setPasswordField.getText().equals(confirmPasswordField.getText())) {
