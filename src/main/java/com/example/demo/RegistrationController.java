@@ -93,7 +93,6 @@ public class RegistrationController implements Initializable {
         }
     }
 
-
     public void registerUser() throws NoSuchAlgorithmException {
         DatabaseConnection connection = new DatabaseConnection();
         Connection connectionDB = connection.getConnection();
