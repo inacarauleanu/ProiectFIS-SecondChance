@@ -152,4 +152,3 @@ public class RegistrationController implements Initializable {
         }
         }}
 
-
