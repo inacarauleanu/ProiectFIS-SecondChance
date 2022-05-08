@@ -145,7 +145,6 @@ public class RegistrationController implements Initializable {
                     checkUsername.setText("");
                     checkEmail.setText("");
                     registrationMessageLabel.setText("User has been registered successfully!");}
-
         }catch (Exception e) {
             e.printStackTrace();
             e.getCause();
