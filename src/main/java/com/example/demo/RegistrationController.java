@@ -50,11 +50,10 @@ public class RegistrationController implements Initializable {
     @FXML
     private ChoiceBox<String> myChoiceBox;
 
-    private String[] role = {"CLIENT","ONG","SH"};
+    private String[] role = {"CLIENT", "ONG", "SH"};
 
 
-    public void initialize(URL url, ResourceBundle resourceBundle)
-    {
+    public void initialize(URL url, ResourceBundle resourceBundle) {
         File iconFile = new File("images/4068309-200.png");
         Image iconImage = new Image(iconFile.toURI().toString());
         iconImageView.setImage(iconImage);
@@ -62,39 +61,38 @@ public class RegistrationController implements Initializable {
     }
 
     @FXML
-   private void initialize(){
-       myChoiceBox.getItems().addAll(role);
-       myChoiceBox.setOnAction(this::getRole);}
+    private void initialize() {
+        myChoiceBox.getItems().addAll(role);
+        myChoiceBox.setOnAction(this::getRole);
+    }
 
-    public void getRole(ActionEvent event){
+    public void getRole(ActionEvent event) {
         String myRole = myChoiceBox.getSelectionModel().getSelectedItem();
         myLabel.setText(myRole);
     }
-    public void CancelButtonOnAction(ActionEvent event)
-    {
+
+    public void CancelButtonOnAction(ActionEvent event) {
         Stage stage = (Stage) cancelButton.getScene().getWindow();
         stage.close();
         Platform.exit();
     }
 
 
-    public void registerButtonOnAction(ActionEvent event) throws NoSuchAlgorithmException
-    {
-        if(firstnameTextField.getText().isBlank()==false && lastnameTextField.getText().isBlank()==false && usernameTextField.getText().isBlank()==false && setPasswordField.getText().isBlank()==false && confirmPasswordField.getText().isBlank()==false && emailTextField.getText().isBlank()==false)
-        {
-            if(setPasswordField.getText().equals(confirmPasswordField.getText())) {
+    public void registerButtonOnAction(ActionEvent event) throws NoSuchAlgorithmException {
+        if (firstnameTextField.getText().isBlank() == false && lastnameTextField.getText().isBlank() == false && usernameTextField.getText().isBlank() == false && setPasswordField.getText().isBlank() == false && confirmPasswordField.getText().isBlank() == false && emailTextField.getText().isBlank() == false) {
+            if (setPasswordField.getText().equals(confirmPasswordField.getText())) {
                 registerUser();
                 confirmPasswordLabel.setText(" ");
 
-            }else{
+            } else {
                 confirmPasswordLabel.setText("Password does not match!");
             }
-        }else{
+        } else {
             registrationMessageLabel.setText("Please complete all empty fields!");
             confirmPasswordLabel.setText(" ");
         }
-
     }
+
 
     public void registerUser() throws NoSuchAlgorithmException {
         DatabaseConnection connection = new DatabaseConnection();
