@@ -18,6 +18,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.Arrays;
+import java.util.Base64;
 import java.util.ResourceBundle;
 
 public class RegistrationController implements Initializable {
@@ -50,7 +52,12 @@ public class RegistrationController implements Initializable {
     @FXML
     private ChoiceBox<String> myChoiceBox;
 
-    private String[] role = {"CLIENT", "ONG", "SH"};
+    private final String[] role = {"CLIENT", "ONG", "SH"};
+    public static  String ROLE;
+    //public static String myRole1;
+   // public static   int  client1=1;
+  String myRole3="SELECT  FROM account_user WHERE role =" + myChoiceBox.getAccessibleText() ;
+   // String myRole2= myChoiceBox.getAccessibleText() ;;
 
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -69,7 +76,9 @@ public class RegistrationController implements Initializable {
     public void getRole(ActionEvent event) {
         String myRole = myChoiceBox.getSelectionModel().getSelectedItem();
         myLabel.setText(myRole);
+       // myRole1=myRole;
     }
+
 
     public void CancelButtonOnAction(ActionEvent event) {
         Stage stage = (Stage) cancelButton.getScene().getWindow();
@@ -78,7 +87,7 @@ public class RegistrationController implements Initializable {
     }
 
     public void registerButtonOnAction(ActionEvent event) throws NoSuchAlgorithmException {
-        if (firstnameTextField.getText().isBlank() == false && lastnameTextField.getText().isBlank() == false && usernameTextField.getText().isBlank() == false && setPasswordField.getText().isBlank() == false && confirmPasswordField.getText().isBlank() == false && emailTextField.getText().isBlank() == false) {
+        if (firstnameTextField.getText().isBlank() == false && lastnameTextField.getText().isBlank() == false && usernameTextField.getText().isBlank() == false && setPasswordField.getText().isBlank() == false && confirmPasswordField.getText().isBlank() == false && emailTextField.getText().isBlank() == false  && ( (myChoiceBox.getSelectionModel().getSelectedItem()=="CLIENT") || (myChoiceBox.getSelectionModel().getSelectedItem()=="ONG") || (myChoiceBox.getSelectionModel().getSelectedItem()=="SH"))){
             if (setPasswordField.getText().equals(confirmPasswordField.getText())) {
                 registerUser();
                 confirmPasswordLabel.setText(" ");
@@ -96,34 +105,48 @@ public class RegistrationController implements Initializable {
         DatabaseConnection connection = new DatabaseConnection();
         Connection connectionDB = connection.getConnection();
 
+       // CLIENT client1 = new CLIENT(usernameTextField.getText(), myChoiceBox.getSelectionModel().getSelectedItem());
+
         String firstname = firstnameTextField.getText();
         String lastname = lastnameTextField.getText();
         String username = usernameTextField.getText();
         String password = setPasswordField.getText();
         String email = emailTextField.getText();
         String role = myChoiceBox.getSelectionModel().getSelectedItem();
-
+        String myRole1=myChoiceBox.getValue();
         String salt = username;
+
+        CLIENT client1 = new CLIENT(usernameTextField.getText(), myChoiceBox.getValue());
+        String ROLE = client1.getRole();
 
         MessageDigest md = MessageDigest.getInstance("SHA-512");
         md.update(salt.getBytes(StandardCharsets.UTF_8));
 
         String pass = password;
-        byte[] hasedPassword = md.digest(pass.getBytes(StandardCharsets.UTF_8));
-
+        byte[] hasedPassword = md.digest(pass.getBytes(StandardCharsets.UTF_8)); //!!!
+        //System.out.println(Arrays.toString(Base64.getDecoder().decode(hasedPassword)));
         String insertFields = "INSERT INTO account_user (lastname, firstname, username, password, email, role) VALUES('";
-        String insertValues = firstname + "','" + lastname + "','" + username + "','" + hasedPassword + "','" + email + "','"+ role + "')";
+        String insertValues = firstname + "','" + lastname + "','" + username + "','" + pass + "','" + email + "','"+ role + "')";
         String insertToRegister = insertFields + insertValues;
         String verifyUsername = "SELECT count(1) FROM account_user WHERE username = '" + usernameTextField.getText() + "'";
         String verifyEmail = "SELECT count(1) FROM account_user WHERE email = '" + emailTextField.getText() + "'";
+        String verifyRole = "SELECT role FROM account_user WHERE username =" + usernameTextField.getText() ;
+
+        //if(myLabel.equals(new String("CLIENT"))) client1=1;
+        //else client1=0;
+
         int ok=0;
         int ok1=0;
         try {
             Statement statement = connectionDB.createStatement();
             Statement statement1 = connectionDB.createStatement();
             Statement statement2 = connectionDB.createStatement();
+
             ResultSet queryResult = statement.executeQuery(verifyUsername);
            ResultSet queryResult1 = statement2.executeQuery(verifyEmail);
+
+           // if(role == "CLIENT") client1=1;
+         //   else client1=0;
             while (queryResult.next()) {
                 if (queryResult.getInt(1) == 1) {
                     checkUsername.setText("This username already exists!");
@@ -149,5 +172,8 @@ public class RegistrationController implements Initializable {
             e.printStackTrace();
             e.getCause();
         }
-        }}
+
+        }
+
+}
 
