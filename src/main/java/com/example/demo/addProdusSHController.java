@@ -107,7 +107,7 @@ public class addProdusSHController implements Initializable {
             alert.setContentText("Please Fill all data");
             alert.showAndWait();
         }else{
-           // getQuery();
+            getQuery();
             insert();
             clean();
 
@@ -145,7 +145,7 @@ public class addProdusSHController implements Initializable {
         }
     }
 
-   /* private void getQuery() {
+    private void getQuery() {
         if(update==false) {
             query = "INSERT INTO produse_sh (ID, Denumire, Pret, Marime, Culoare) VALUES(?, ?, ?, ?, ?)";
         }else
@@ -156,7 +156,7 @@ public class addProdusSHController implements Initializable {
                     "                    + \"`Marime`=?,\"\n" +
                     "                    + \"`Culoare`= ? WHERE id = '\"+produsId+\"'";
         }
-    }*/
+    }
     public void setTextField(int id, String denumire, String color, String size, String price) {
         produsID = id;
         denumireTextField.setText(denumire);

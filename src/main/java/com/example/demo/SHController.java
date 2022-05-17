@@ -3,11 +3,14 @@ package com.example.demo;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.File;
 import java.net.URL;
@@ -41,6 +44,21 @@ private ImageView iconImageView;
         Stage stage = (Stage) cancelButton.getScene().getWindow();
         stage.close();
         Platform.exit();
+    }
+
+    public void veziProduseForm(){
+        try{
+            FXMLLoader fxmlLoader = new FXMLLoader(SHVeziProduseController.class.getResource("shVeziProduse.fxml"));
+            Scene scene = new Scene(fxmlLoader.load(), 760, 590);
+            Stage clientStage = new Stage();
+            clientStage.initStyle(StageStyle.UNDECORATED);
+            clientStage.setScene(scene);
+            clientStage.show();
+        }catch(Exception e){
+            e.printStackTrace();
+            e.getCause();
+        }
+
     }
 
 
