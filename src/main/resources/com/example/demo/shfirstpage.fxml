@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.shfirstpage">
+   <children>
+      <AnchorPane prefHeight="527.0" prefWidth="600.0" style="-fx-background-color: #fcc0c7;">
+         <children>
+            <Label layoutX="263.0" layoutY="30.0" text="Welcome!">
+               <font>
+                  <Font name="Gabriola" size="29.0" />
+               </font>
+            </Label>
+            <Button alignment="CENTER" layoutX="166.0" layoutY="108.0" mnemonicParsing="false" style="-fx-background-color: #ffffff;" text="Vezi Produse">
+               <font>
+                  <Font name="Gabriola" size="24.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../../images/img_569713.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button alignment="CENTER" layoutX="166.0" layoutY="312.0" mnemonicParsing="false" prefHeight="166.0" prefWidth="281.0" style="-fx-background-color: #ffffff;" text="Vezi Comenzi">
+               <font>
+                  <Font name="Gabriola" size="24.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../../images/img_355401.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
