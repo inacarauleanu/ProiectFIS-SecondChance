@@ -126,7 +126,7 @@ private static String getSalt() throws NoSuchAlgorithmException, NoSuchProviderE
         String hasedPassword = sb.toString();
         //final String secretKey = "ssshhhhhhhhhhh!!!!";
         //String encryptedPassword  = AES.encrypt(password);
-        System.out.println(Base64.getDecoder().decode(hasedPassword));
+        //System.out.println(Base64.getDecoder().decode(hasedPassword));
         String insertFields = "INSERT INTO account_user (lastname, firstname, username, password, email, role) VALUES('";
         String insertValues = firstname + "','" + lastname + "','" + username + "','" +hasedPassword+ "','" + email + "','"+ role + "')";
         String insertToRegister = insertFields + insertValues;
