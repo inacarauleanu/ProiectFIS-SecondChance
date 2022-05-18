@@ -10,6 +10,8 @@ public class DatabaseConnection {
         String databaseUser = "root";
         String databasePassword = "root";
         String URL = "jdbc:mysql://localhost:3306/mydb";
+        //denisa String databasePassword = "199145";
+        //String URL = "jdbc:mysql://localhost:3306/bazadate";
 
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
