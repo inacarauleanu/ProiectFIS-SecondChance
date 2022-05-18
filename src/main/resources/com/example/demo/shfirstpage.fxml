@@ -13,7 +13,7 @@
    <center>
       <AnchorPane style="-fx-background-color: #fcc0c7;" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="SeeProducts" alignment="CENTER" contentDisplay="BOTTOM" layoutX="69.0" layoutY="215.0" mnemonicParsing="false" style="-fx-background-color: #fcc0c7;" text="See Prouducts">
+            <Button fx:id="SeeProducts" alignment="CENTER" contentDisplay="BOTTOM" layoutX="69.0" layoutY="215.0" mnemonicParsing="false" onAction="#veziProduseForm" style="-fx-background-color: #fcc0c7;" text="See Prouducts">
                <font>
                   <Font name="Gabriola" size="24.0" />
                </font>

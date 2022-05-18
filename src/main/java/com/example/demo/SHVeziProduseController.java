@@ -1,6 +1,4 @@
 package com.example.demo;
-import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
-import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -30,7 +28,7 @@ import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class SHVeziProduseController extends Application implements Initializable{
+public class SHVeziProduseController implements Initializable{
     @FXML
     private TableView<Produs> produseSHTable;
     @FXML
@@ -46,13 +44,25 @@ public class SHVeziProduseController extends Application implements Initializabl
     @FXML
     private TableColumn<Produs, Produs> priceCol;
     @FXML
-    private TableColumn<Produs, String> editCol;
-    @FXML
     private ImageView addImage;
     @FXML
     private ImageView refreshImage;
     @FXML
     private ImageView printImage;
+    @FXML
+    private TextField denumireTextField;
+    @FXML
+    private TextField sizeTextField;
+    @FXML
+    private TextField colorTextField;
+    @FXML
+    private TextField priceTextField;
+    @FXML
+    private TextField idTextField;
+    @FXML
+    private Label checkIDLabel;
+
+
 
     String query = null;
     Connection connection = null;
@@ -61,14 +71,14 @@ public class SHVeziProduseController extends Application implements Initializabl
     Produs produs = null;
 
     ObservableList<Produs> produsList = FXCollections.observableArrayList();
-    @Override
+    /*@Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(SHVeziProduseController.class.getResource("shVeziProduse.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 600, 400);
+        Scene scene = new Scene(fxmlLoader.load(), 760, 590);
         stage.initStyle(StageStyle.UNDECORATED);
         stage.setScene(scene);
         stage.show();
-    }
+    }*/
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
@@ -225,7 +235,7 @@ public class SHVeziProduseController extends Application implements Initializabl
     }
 
 
-    public void getAddView(MouseEvent mouseEvent) {
+    /*public void getAddView(MouseEvent mouseEvent) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(SHVeziProduseController.class.getResource("addProdusSH.fxml"));
             Scene scene = new Scene(fxmlLoader.load(), 311, 400);
@@ -239,8 +249,124 @@ public class SHVeziProduseController extends Application implements Initializabl
             e.getCause();
         }
 
+    }*/
+    int check_data()
+    {
+        if(idTextField.getText().isEmpty() || denumireTextField.getText().isEmpty() || priceTextField.getText().isEmpty() ||colorTextField.getText().isEmpty()||sizeTextField.getText().isEmpty())
+        {
+            checkIDLabel.setText("Please fill in all fields!");
+            return 0;
+        }else return 1;
+    }
+    public void addProductSH() {
+        DatabaseConnection connection = new DatabaseConnection();
+        Connection connectionDB = connection.getConnection();
+
+        String denumire = denumireTextField.getText();
+        String id = idTextField.getText();
+        String color = colorTextField.getText();
+        String size = sizeTextField.getText();
+        String price = priceTextField.getText();
+        String insertFields = "INSERT INTO produse_sh (ID, Denumire, Pret, Marime, Culoare) VALUES('";
+        String insertValues = id + "','" + denumire + "','" + price + "','" + size + "','" + color + "')";
+        String insertToRegister = insertFields + insertValues;
+        String searchID = "SELECT count(1) FROM produse_sh WHERE ID='"+id+"'";
+        try {
+            Statement statement = connectionDB.createStatement();
+            Statement statement1 = connectionDB.createStatement();
+            ResultSet queryResult = statement.executeQuery(searchID);
+            while(queryResult.next())
+            {
+                if(queryResult.getInt(1)==1)
+                {
+                    checkIDLabel.setText("This ID already exists!");
+                }else{
+                    if(check_data()==1)
+                    {statement1.executeUpdate(insertToRegister);
+                    refreshTable();
+                    checkIDLabel.setText("Operation succeeded!");}
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            e.getCause();
+        }
+    }
+
+    public void deleteProductSH()
+    {
+        DatabaseConnection connection = new DatabaseConnection();
+        Connection connectionDB = connection.getConnection();
+        String id = idTextField.getText();
+        String deleteField = "DELETE FROM produse_sh WHERE ID='" + id + "'";
+        String searchID = "SELECT count(1) FROM produse_sh WHERE ID='"+id+"'";
+
+        try {
+            Statement statement = connectionDB.createStatement();
+            Statement statement1 = connectionDB.createStatement();
+            ResultSet queryResult = statement.executeQuery(searchID);
+            while(queryResult.next())
+            {
+                if(queryResult.getInt(1)==1)
+                {
+                    if(check_data()==1){
+                    checkIDLabel.setText("Operation succeeded!");
+                    statement1.executeUpdate(deleteField);
+                    refreshTable();}
+                }else{
+                    checkIDLabel.setText("This ID does not exist!");
+                }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            e.getCause();
+        }
+
+
+
     }
 
     public void print(MouseEvent mouseEvent) {
+    }
+
+    public void updateProductSH() {
+        DatabaseConnection connection = new DatabaseConnection();
+        Connection connectionDB = connection.getConnection();
+        String id = idTextField.getText();
+        String denumire = denumireTextField.getText();
+        String color = colorTextField.getText();
+        String size = sizeTextField.getText();
+        String price = priceTextField.getText();
+        String updateField = "UPDATE produse_sh SET Denumire='" + denumire + "'" + ","
+                + "Pret='"+price+"'" + ","
+                +"Marime='"+size+"'"+","
+                +"Culoare='"+color+"'"
+                +"WHERE ID='" + id + "'";
+        String searchID = "SELECT count(1) FROM produse_sh WHERE ID='"+id+"'";
+        try {
+            Statement statement = connectionDB.createStatement();
+            Statement statement1 = connectionDB.createStatement();
+            ResultSet queryResult = statement.executeQuery(searchID);
+            while(queryResult.next())
+            {
+                if(queryResult.getInt(1)==1)
+                {
+                    //
+                    if(check_data()==1){
+                    checkIDLabel.setText("Operation succeeded!");
+                    statement1.executeUpdate(updateField);
+                    refreshTable();}
+                }
+                else{
+                    checkIDLabel.setText("This ID does not exist!");
+                }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            e.getCause();
+        }
+
     }
 }
