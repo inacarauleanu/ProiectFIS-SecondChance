@@ -106,15 +106,38 @@ public class RegistrationController implements Initializable {
 
     }
 =======*/
-private static String getSalt() throws NoSuchAlgorithmException, NoSuchProviderException
+/*private static String getSalt() throws NoSuchAlgorithmException, NoSuchProviderException
 {
     SecureRandom sr = SecureRandom.getInstance("SHA1PRNG", "SUN");
     byte[] salt = new byte[16];
     sr.nextBytes(salt);
     return salt.toString();
 
-}
+}*/
 //>>>>>>> origin/main
+
+   /* private static MessageDigest getMessageDigest() {
+        MessageDigest md;
+        try {
+            md = MessageDigest.getInstance("SHA-512");
+        } catch (NoSuchAlgorithmException e) {
+            throw new IllegalStateException("SHA-512 does not exist!");
+        }
+        return md;
+    }
+
+private static String encodePassword(String salt, String password) {
+    MessageDigest md = getMessageDigest();
+    md.update(salt.getBytes(StandardCharsets.UTF_8));
+
+    byte[] hashedPassword = md.digest(password.getBytes(StandardCharsets.UTF_8));
+
+    // This is the way a password should be encoded when checking the credentials
+    return new String(hashedPassword, StandardCharsets.UTF_8)
+           .replace("\"", ""); //to be able to save in JSON format
+}*/
+
+
     public void registerUser() throws NoSuchAlgorithmException, NoSuchProviderException {
         DatabaseConnection connection = new DatabaseConnection();
         Connection connectionDB = connection.getConnection();
@@ -125,12 +148,21 @@ private static String getSalt() throws NoSuchAlgorithmException, NoSuchProviderE
         String password = setPasswordField.getText();
         String email = emailTextField.getText();
         String role = myChoiceBox.getSelectionModel().getSelectedItem();
+       /* String encodePass;
+        String salt = username;
+        MessageDigest md= MessageDigest.getInstance("SHA-512");
+        md.update(salt.getBytes(StandardCharsets.UTF_8));
 
-        String passwordToHash = password;
-        String salt = getSalt();
+        byte[] hasedPass = md.digest(password.getBytes(StandardCharsets.UTF_8));
+        encodePass=new String(hasedPass, StandardCharsets.UTF_8).
+                replace("\"",""); */
+
+
+      // String passwordToHash = encodePassword(username,password);
+        String salt = username;
         MessageDigest md = MessageDigest.getInstance("MD5");
         md.update(salt.getBytes());
-        byte[] bytes = md.digest(passwordToHash.getBytes());
+        byte[] bytes = md.digest(password.getBytes());
         StringBuilder sb = new StringBuilder();
         for(int i=0;i<bytes.length;i++)
         {
@@ -143,7 +175,7 @@ private static String getSalt() throws NoSuchAlgorithmException, NoSuchProviderE
         String insertFieldsClient = "INSERT INTO account_user (lastname, firstname, username, password, email) VALUES('";
         String insertFieldsSH = "INSERT INTO admin_sh (lastname, firstname, username, parola, email) VALUES('";
         String insertFieldsONG = "INSERT INTO admin_ong (lastname, firstname, username, parola, email) VALUES('";
-        String insertValues = lastname + "','" + firstname + "','" + username + "','" +password+ "','" + email +"')";
+        String insertValues = lastname + "','" + firstname + "','" + username + "','" +hasedPassword+ "','" + email +"')";
         String insertToRegisterClient = insertFieldsClient + insertValues;
         //verify username & email pentru fiecare tabel
         String verifyUsernameClient = "SELECT count(1) FROM account_user WHERE username = '" + usernameTextField.getText() + "'";
@@ -204,15 +236,15 @@ private static String getSalt() throws NoSuchAlgorithmException, NoSuchProviderE
         String role = myChoiceBox.getSelectionModel().getSelectedItem();
 
         String passwordToHash = password;
-        String salt = getSalt();
+        /*String salt = getSalt();
         MessageDigest md = MessageDigest.getInstance("MD5");
         md.update(salt.getBytes());
         byte[] bytes = md.digest(passwordToHash.getBytes());
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < bytes.length; i++) {
             sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
-        }
-        String hasedPassword = sb.toString();
+        }*/
+       // String hasedPassword = sb.toString();
         //final String secretKey = "ssshhhhhhhhhhh!!!!";
         //String encryptedPassword  = AES.encrypt(password);
         //System.out.println(Base64.getDecoder().decode(hasedPassword));
@@ -278,7 +310,7 @@ private static String getSalt() throws NoSuchAlgorithmException, NoSuchProviderE
         String email = emailTextField.getText();
         String role = myChoiceBox.getSelectionModel().getSelectedItem();
 
-        String passwordToHash = password;
+      /*  String passwordToHash = password;
         String salt = getSalt();
         MessageDigest md = MessageDigest.getInstance("MD5");
         md.update(salt.getBytes());
@@ -288,7 +320,7 @@ private static String getSalt() throws NoSuchAlgorithmException, NoSuchProviderE
         {
             sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
         }
-        String hasedPassword = sb.toString();
+        String hasedPassword = sb.toString();*/
         //final String secretKey = "ssshhhhhhhhhhh!!!!";
         //String encryptedPassword  = AES.encrypt(password);
         //System.out.println(Base64.getDecoder().decode(hasedPassword));

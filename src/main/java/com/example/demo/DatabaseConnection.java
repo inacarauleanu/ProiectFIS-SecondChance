@@ -15,11 +15,12 @@ public class DatabaseConnection {
         String databasePassword = "199145";
         String URL = "jdbc:mysql://localhost:3306/bazadate";
 =======*/
+        //INA
         String databasePassword = "root";
       String URL = "jdbc:mysql://localhost:3306/mydb";
         //denisa
-       // String databasePassword = "199145";
-       // String URL = "jdbc:mysql://localhost:3306/bazadate";
+      // String databasePassword = "199145";
+      // String URL = "jdbc:mysql://localhost:3306/bazadate";
 //>>>>>>> origin/main
 
         try{
