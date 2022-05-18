@@ -236,6 +236,16 @@ private static String encodePassword(String salt, String password) {
         String role = myChoiceBox.getSelectionModel().getSelectedItem();
 
         String passwordToHash = password;
+        String salt = username;
+        MessageDigest md = MessageDigest.getInstance("MD5");
+        md.update(salt.getBytes());
+        byte[] bytes = md.digest(password.getBytes());
+        StringBuilder sb = new StringBuilder();
+        for(int i=0;i<bytes.length;i++)
+        {
+            sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
+        }
+        String hasedPassword = sb.toString();
         /*String salt = getSalt();
         MessageDigest md = MessageDigest.getInstance("MD5");
         md.update(salt.getBytes());
@@ -251,7 +261,7 @@ private static String encodePassword(String salt, String password) {
         String insertFieldsClient = "INSERT INTO account_user (lastname, firstname, username, password, email) VALUES('";
         String insertFieldsSH = "INSERT INTO admin_sh (lastname, firstname, username, parola, email) VALUES('";
         String insertFieldsONG = "INSERT INTO admin_ong (lastname, firstname, username, parola, email) VALUES('";
-        String insertValues = lastname + "','" + firstname + "','" + username + "','" + password + "','" + email + "')";
+        String insertValues = lastname + "','" + firstname + "','" + username + "','" + hasedPassword + "','" + email + "')";
         String insertToRegisterSH = insertFieldsSH + insertValues;
         String verifyUsernameSH = "SELECT count(1) FROM admin_sh WHERE username = '" + usernameTextField.getText() + "'";
         String verifyEmailSH = "SELECT count(1) FROM admin_sh WHERE email = '" + emailTextField.getText() + "'";
@@ -310,6 +320,16 @@ private static String encodePassword(String salt, String password) {
         String email = emailTextField.getText();
         String role = myChoiceBox.getSelectionModel().getSelectedItem();
 
+        String salt = username;
+        MessageDigest md = MessageDigest.getInstance("MD5");
+        md.update(salt.getBytes());
+        byte[] bytes = md.digest(password.getBytes());
+        StringBuilder sb = new StringBuilder();
+        for(int i=0;i<bytes.length;i++)
+        {
+            sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
+        }
+        String hasedPassword = sb.toString();
       /*  String passwordToHash = password;
         String salt = getSalt();
         MessageDigest md = MessageDigest.getInstance("MD5");
@@ -325,7 +345,7 @@ private static String encodePassword(String salt, String password) {
         //String encryptedPassword  = AES.encrypt(password);
         //System.out.println(Base64.getDecoder().decode(hasedPassword));
         String insertFieldsONG = "INSERT INTO admin_ong (lastname, firstname, username, parola, email) VALUES('";
-        String insertValues = lastname + "','" + firstname + "','" + username + "','" +password+ "','" + email +"')";
+        String insertValues = lastname + "','" + firstname + "','" + username + "','" +hasedPassword+ "','" + email +"')";
         String insertToRegisterONG= insertFieldsONG + insertValues;
         String verifyUsernameONG = "SELECT count(1) FROM admin_ong WHERE username = '" + usernameTextField.getText() + "'";
         String verifyEmailONG = "SELECT count(1) FROM admin_ong WHERE email = '" + emailTextField.getText() + "'";
