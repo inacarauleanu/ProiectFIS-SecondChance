@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.SHVeziProduseController">
+   <children>
+      <TableView fx:id="produseSHTable" layoutX="70.0" layoutY="125.0" prefHeight="252.0" prefWidth="477.0">
+        <columns>
+          <TableColumn fx:id="idCol" maxWidth="70.0" prefWidth="70.0" text="ID" />
+          <TableColumn fx:id="denumireCol" prefWidth="98.0" text="Denumire" />
+            <TableColumn fx:id="colorCol" prefWidth="71.0" text="Culoare" />
+            <TableColumn fx:id="sizeCol" prefWidth="71.0" text="Mărime" />
+            <TableColumn fx:id="priceCol" prefWidth="82.0" text="Preț" />
+            <TableColumn fx:id="editCol" prefWidth="82.0" text="Edit" />
+        </columns>
+      </TableView>
+      <Pane layoutX="1.0" layoutY="49.0" prefHeight="5.0" prefWidth="600.0" style="-fx-background-color: #fcc0c7;" />
+      <Text layoutX="30.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Your Store's Products">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Button fx:id="cancelButton" layoutX="565.0" layoutY="-1.0" mnemonicParsing="false" onAction="#CancelButtonOnAction" prefHeight="31.0" prefWidth="36.0" text="X">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Button>
+      <HBox layoutX="115.0" layoutY="68.0" prefHeight="50.0" prefWidth="140.0">
+         <children>
+            <ImageView fx:id="addImage" fitHeight="58.0" fitWidth="44.0" onMouseClicked="#getAddView" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../images/add.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="refreshImage" fitHeight="46.0" fitWidth="46.0" onMouseClicked="#refreshTable" pickOnBounds="true" preserveRatio="true" x="10.0">
+               <image>
+                  <Image url="@../../../../../../images/refresh.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="printImage" fitHeight="46.0" fitWidth="46.0" layoutX="54.0" layoutY="10.0" onMouseClicked="#print" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../images/print.png" />
+               </image>
+            </ImageView>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>
