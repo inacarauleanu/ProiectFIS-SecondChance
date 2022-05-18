@@ -5,10 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
@@ -44,15 +41,32 @@ public class HelloController implements Initializable {
     private TextField usernameTextField;
     @FXML
     private PasswordField enterPasswordField;
+    @FXML
+    private ChoiceBox<String> myChoiceBox1;
+    @FXML
+    private Label myLabel;
+    private String[] role1 = {"CLIENT", "ONG", "SH"};
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
         File brandingFile = new File("images/poza.jpg");
         Image brandingImage = new Image(brandingFile.toURI().toString());
         brandingImageView.setImage(brandingImage);
+        myChoiceBox1.getItems().addAll(role1);
 
     }
-   public void signupButtonOnAction(ActionEvent event)
+
+    @FXML
+    private void initialize() {
+        myChoiceBox1.getItems().addAll(role1);
+        myChoiceBox1.setOnAction(this::getRole);
+    }
+    public void getRole(ActionEvent event) {
+        String myRole = myChoiceBox1.getSelectionModel().getSelectedItem();
+        myLabel.setText(myRole);
+    }
+
+    public void signupButtonOnAction(ActionEvent event)
    {
 
        //if(usernameTextField.getText().isBlank()==false && enterPasswordField.getText().isBlank()==false){
@@ -109,7 +123,7 @@ public class HelloController implements Initializable {
         String verifyLogin = "SELECT count(1) FROM account_user WHERE username = '" + usernameTextField.getText() + "'" + "AND password ='" +enterPasswordField.getText() + "'";
         String verifyPassword = "SELECT password from account_user where username = '"+usernameTextField.getText()+"'";
 
-        String decryptedString = AES.decrypt(verifyPassword);
+        //String decryptedString = AES.decrypt(verifyPassword);
         //System.out.println(decryptedString);
         //String verifyRole = "SELECT email from account_user where username = '" + usernameTextField.getText() + "'";
        // String verifyLogin = "SELECT count(1) FROM account_user WHERE (username = '" + usernameTextField.getText() + "'" + "AND STRCMP('" +enterPasswordField.getText() + "'" +  "," + "'" + decryptedString + "'" + ")" +"=0" +")" ;
@@ -119,7 +133,10 @@ public class HelloController implements Initializable {
             while(queryResult.next()){
                 //System.out.println(verifyLogin);
                 if (queryResult.getInt(1)==1) {
-
+                    if (myChoiceBox1.getSelectionModel().getSelectedItem()=="CLIENT")
+                        createClientForm();
+                    if (myChoiceBox1.getSelectionModel().getSelectedItem()=="SH")
+                        createSHForm();
                     loginMessageLabel.setText("Congrats!");
                     //  createAccountForm();
                 }else{
@@ -153,6 +170,35 @@ public class HelloController implements Initializable {
             e.getCause();
         }
     }
+    public  void createClientForm(){
+        try{
 
+            Parent root1 = FXMLLoader.load(getClass().getResource("client1.fxml"));
+            Stage clientStage = new Stage();
+            clientStage.initStyle(StageStyle.UNDECORATED);
+            clientStage.setScene(new Scene(root1,520,400));
+            clientStage.show();
 
+        }  catch (Exception e) {
+            e.printStackTrace();
+            e.getCause();
+        }
+    }
+
+    public  void createSHForm(){
+        try{
+
+            Parent root1 = FXMLLoader.load(getClass().getResource("shfirstpage.fxml"));
+            Stage clientStage = new Stage();
+            clientStage.initStyle(StageStyle.UNDECORATED);
+            clientStage.setScene(new Scene(root1,598,503));
+            clientStage.show();
+
+        }  catch (Exception e) {
+            e.printStackTrace();
+            e.getCause();
+        }
+    }
 }
+
+
