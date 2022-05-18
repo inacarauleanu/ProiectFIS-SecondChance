@@ -96,6 +96,7 @@ public class RegistrationController implements Initializable {
             confirmPasswordLabel.setText(" ");
         }
     }
+/*<<<<<<< HEAD
     private static String getSalt() throws NoSuchAlgorithmException, NoSuchProviderException
     {
         SecureRandom sr = SecureRandom.getInstance("SHA1PRNG", "SUN");
@@ -104,6 +105,16 @@ public class RegistrationController implements Initializable {
         return salt.toString();
 
     }
+=======*/
+private static String getSalt() throws NoSuchAlgorithmException, NoSuchProviderException
+{
+    SecureRandom sr = SecureRandom.getInstance("SHA1PRNG", "SUN");
+    byte[] salt = new byte[16];
+    sr.nextBytes(salt);
+    return salt.toString();
+
+}
+//>>>>>>> origin/main
     public void registerUser() throws NoSuchAlgorithmException, NoSuchProviderException {
         DatabaseConnection connection = new DatabaseConnection();
         Connection connectionDB = connection.getConnection();
@@ -146,7 +157,11 @@ public class RegistrationController implements Initializable {
             Statement statement1 = connectionDB.createStatement();
             Statement statement2 = connectionDB.createStatement();
             ResultSet queryResult = statement.executeQuery(verifyUsernameClient);
+//<<<<<<< HEAD
             ResultSet queryResult1 = statement2.executeQuery(verifyEmailClient);
+/*=======
+           ResultSet queryResult1 = statement2.executeQuery(verifyEmailClient);
+>>>>>>> origin/main*/
             while (queryResult.next()) {
                 if (queryResult.getInt(1) == 1) {
                     checkUsername.setText("This username already exists!");
@@ -176,6 +191,7 @@ public class RegistrationController implements Initializable {
             e.printStackTrace();
             e.getCause();
         }}
+//<<<<<<< HEAD
     public void registerSH() throws NoSuchAlgorithmException, NoSuchProviderException {
         DatabaseConnection connection = new DatabaseConnection();
         Connection connectionDB = connection.getConnection();
@@ -321,3 +337,154 @@ public class RegistrationController implements Initializable {
         }
 
     }}
+/*
+=======
+        public void registerSH() throws NoSuchAlgorithmException, NoSuchProviderException {
+            DatabaseConnection connection = new DatabaseConnection();
+            Connection connectionDB = connection.getConnection();
+
+            String firstname = firstnameTextField.getText();
+            String lastname = lastnameTextField.getText();
+            String username = usernameTextField.getText();
+            String password = setPasswordField.getText();
+            String email = emailTextField.getText();
+            String role = myChoiceBox.getSelectionModel().getSelectedItem();
+
+            String passwordToHash = password;
+            String salt = getSalt();
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            md.update(salt.getBytes());
+            byte[] bytes = md.digest(passwordToHash.getBytes());
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < bytes.length; i++) {
+                sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
+            }
+            String hasedPassword = sb.toString();
+            //final String secretKey = "ssshhhhhhhhhhh!!!!";
+            //String encryptedPassword  = AES.encrypt(password);
+            //System.out.println(Base64.getDecoder().decode(hasedPassword));
+            String insertFieldsClient = "INSERT INTO account_user (lastname, firstname, username, password, email) VALUES('";
+            String insertFieldsSH = "INSERT INTO admin_sh (lastname, firstname, username, parola, email) VALUES('";
+            String insertFieldsONG = "INSERT INTO admin_ong (lastname, firstname, username, parola, email) VALUES('";
+            String insertValues = lastname + "','" + firstname + "','" + username + "','" + password + "','" + email + "')";
+            String insertToRegisterSH = insertFieldsSH + insertValues;
+            String verifyUsernameSH = "SELECT count(1) FROM admin_sh WHERE username = '" + usernameTextField.getText() + "'";
+            String verifyEmailSH = "SELECT count(1) FROM admin_sh WHERE email = '" + emailTextField.getText() + "'";
+            int ok = 0;
+            int ok1 = 0;
+            try {
+
+                Statement statement = connectionDB.createStatement();
+                Statement statement1 = connectionDB.createStatement();
+                Statement statement2 = connectionDB.createStatement();
+                ResultSet queryResult = statement.executeQuery(verifyUsernameSH);
+                ResultSet queryResult1 = statement2.executeQuery(verifyEmailSH);
+                while (queryResult.next()) {
+                    if (queryResult.getInt(1) == 1) {
+                        checkUsername.setText("This username already exists!");
+                        ok = 1;
+                    } else ok = 0;
+                    if (ok1 == 0) {
+                        checkEmail.setText("");
+                        registrationMessageLabel.setText("");
+                    }
+                }
+                while (queryResult1.next()) {
+                    if (queryResult1.getInt(1) == 1) {
+                        checkEmail.setText("This email already exists!");
+                        ok1 = 1;
+                    } else ok1 = 0;
+                    if (ok == 0) {
+                        checkUsername.setText("");
+                        registrationMessageLabel.setText("");
+                    }
+                }
+                if (ok1 == 0 && ok == 0) {
+                    if (myChoiceBox.getSelectionModel().getSelectedItem() == "SH") {
+                        statement1.executeUpdate(insertToRegisterSH);
+                        checkUsername.setText("");
+                        checkEmail.setText("");
+                        registrationMessageLabel.setText("User has been registered successfully!");
+                    }
+
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+                e.getCause();
+            }
+        }
+
+            public void registerONG() throws NoSuchAlgorithmException, NoSuchProviderException {
+                DatabaseConnection connection = new DatabaseConnection();
+                Connection connectionDB = connection.getConnection();
+
+                String firstname = firstnameTextField.getText();
+                String lastname = lastnameTextField.getText();
+                String username = usernameTextField.getText();
+                String password = setPasswordField.getText();
+                String email = emailTextField.getText();
+                String role = myChoiceBox.getSelectionModel().getSelectedItem();
+
+                String passwordToHash = password;
+                String salt = getSalt();
+                MessageDigest md = MessageDigest.getInstance("MD5");
+                md.update(salt.getBytes());
+                byte[] bytes = md.digest(passwordToHash.getBytes());
+                StringBuilder sb = new StringBuilder();
+                for(int i=0;i<bytes.length;i++)
+                {
+                    sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
+                }
+                String hasedPassword = sb.toString();
+                //final String secretKey = "ssshhhhhhhhhhh!!!!";
+                //String encryptedPassword  = AES.encrypt(password);
+                //System.out.println(Base64.getDecoder().decode(hasedPassword));
+                String insertFieldsONG = "INSERT INTO admin_ong (lastname, firstname, username, parola, email) VALUES('";
+                String insertValues = lastname + "','" + firstname + "','" + username + "','" +password+ "','" + email +"')";
+                String insertToRegisterONG= insertFieldsONG + insertValues;
+                String verifyUsernameONG = "SELECT count(1) FROM admin_ong WHERE username = '" + usernameTextField.getText() + "'";
+                String verifyEmailONG = "SELECT count(1) FROM admin_ong WHERE email = '" + emailTextField.getText() + "'";
+                int ok=0;
+                int ok1=0;
+                try {
+
+                    Statement statement = connectionDB.createStatement();
+                    Statement statement1 = connectionDB.createStatement();
+                    Statement statement2 = connectionDB.createStatement();
+                    ResultSet queryResult = statement.executeQuery(verifyUsernameONG);
+                    ResultSet queryResult1 = statement2.executeQuery(verifyEmailONG);
+                    while (queryResult.next()) {
+                        if (queryResult.getInt(1) == 1) {
+                            checkUsername.setText("This username already exists!");
+                            ok = 1;
+                        } else ok = 0;
+                        if (ok1 == 0) {
+                            checkEmail.setText("");
+                            registrationMessageLabel.setText("");
+                        }
+                    }
+                    while(queryResult1.next()){
+                        if(queryResult1.getInt(1)==1){
+                            checkEmail.setText("This email already exists!");
+                            ok1=1;} else ok1=0;
+                        if(ok==0) {checkUsername.setText("");
+                            registrationMessageLabel.setText("");}}
+                    if(ok1==0 && ok==0) {
+                        if (myChoiceBox.getSelectionModel().getSelectedItem() == "ONG") {
+                            statement1.executeUpdate(insertToRegisterONG);
+                            checkUsername.setText("");
+                            checkEmail.setText("");
+                            registrationMessageLabel.setText("User has been registered successfully!");
+                        }
+
+                    }
+                }catch (Exception e) {
+                    e.printStackTrace();
+                    e.getCause();
+                }
+
+        }}
+
+>>>>>>> origin/main
+*/
+

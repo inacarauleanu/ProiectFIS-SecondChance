@@ -39,17 +39,16 @@
          <children>
             <ImageView fx:id="addImage" fitHeight="58.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../../../ProiectFIS-SecondChance-master/images/add.png" />
+
                </image>
             </ImageView>
             <ImageView fx:id="refreshImage" fitHeight="46.0" fitWidth="46.0" onMouseClicked="#refreshTable" pickOnBounds="true" preserveRatio="true" x="10.0">
                <image>
-                  <Image url="@../../../../../../../../ProiectFIS-SecondChance-master/images/refresh.png" />
                </image>
             </ImageView>
             <ImageView fx:id="printImage" fitHeight="46.0" fitWidth="46.0" layoutX="54.0" layoutY="10.0" onMouseClicked="#print" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../../../ProiectFIS-SecondChance-master/images/print.png" />
+
                </image>
             </ImageView>
          </children>
