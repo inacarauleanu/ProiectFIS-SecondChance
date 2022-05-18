@@ -69,7 +69,7 @@ public class HelloController implements Initializable {
 
     public void getRole(ActionEvent event) {
         String myRole = myChoiceBox1.getSelectionModel().getSelectedItem();
-        myLabel.setText(myRole);
+        //myLabel.setText(myRole);
     }
 
     public void signupButtonOnAction(ActionEvent event)
@@ -208,21 +208,30 @@ public class HelloController implements Initializable {
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();
         String password = enterPasswordField.getText();
-        /*String salt = getSalt();
+        String salt = usernameTextField.getText();
         MessageDigest md = MessageDigest.getInstance("MD5");
         md.update(salt.getBytes());
-        byte[] bytes = md.digest(passwordToHash.getBytes());
+        byte[] bytes = md.digest(password.getBytes());
         StringBuilder sb = new StringBuilder();
         for(int i=0;i<bytes.length;i++)
         {
             sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
         }
-        String hasedPassword = sb.toString();*/
+        String hasedPassword = sb.toString();
         //final String secretKey = "ssshhhhhhhhhhh!!!!";
         //String encryptedString = AES.encrypt(password, secretKey);
         //String decryptedString = AES.decrypt(encryptedString, secretKey);
 
-        String verifyLogin = "SELECT count(1) FROM account_user WHERE username = '" + usernameTextField.getText() + "'" + "AND password ='" + enterPasswordField.getText() + "'";
+        /*String encodePass;
+        String salt = usernameTextField.getText();
+        MessageDigest md= MessageDigest.getInstance("SHA-512");
+        md.update(salt.getBytes(StandardCharsets.UTF_8));
+
+        byte[] hasedPass1 = md.digest(password.getBytes(StandardCharsets.UTF_8));
+        encodePass=new String(hasedPass1, StandardCharsets.UTF_8).
+                replace("\"","");*/
+
+        String verifyLogin = "SELECT count(1) FROM account_user WHERE username = '" + usernameTextField.getText() + "'" + "AND password ='" + hasedPassword + "'";
         String verifyPassword = "SELECT password from account_user where username = '" + usernameTextField.getText() + "'";
 
         //String decryptedString = AES.decrypt(verifyPassword);
