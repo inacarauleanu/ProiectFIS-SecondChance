@@ -268,6 +268,18 @@ public class HelloController implements Initializable {
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();
         String password = enterPasswordField.getText();
+
+        String salt = usernameTextField.getText();
+        MessageDigest md = MessageDigest.getInstance("MD5");
+        md.update(salt.getBytes());
+        byte[] bytes = md.digest(password.getBytes());
+        StringBuilder sb = new StringBuilder();
+        for(int i=0;i<bytes.length;i++)
+        {
+            sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
+        }
+        String hasedPassword = sb.toString();
+
         /*String salt = getSalt();
         MessageDigest md = MessageDigest.getInstance("MD5");
         md.update(salt.getBytes());
@@ -282,7 +294,7 @@ public class HelloController implements Initializable {
         //String encryptedString = AES.encrypt(password, secretKey);
         //String decryptedString = AES.decrypt(encryptedString, secretKey);
 
-        String verifyLogin = "SELECT count(1) FROM admin_ong WHERE username = '" + usernameTextField.getText() + "'" + "AND password ='" + enterPasswordField.getText() + "'";
+        String verifyLogin = "SELECT count(1) FROM admin_ong WHERE username = '" + usernameTextField.getText() + "'" + "AND parola ='" + hasedPassword + "'";
         String verifyPassword = "SELECT password from account_user where username = '" + usernameTextField.getText() + "'";
 
         //String decryptedString = AES.decrypt(verifyPassword);
@@ -320,6 +332,17 @@ public class HelloController implements Initializable {
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();
         String password = enterPasswordField.getText();
+
+        String salt = usernameTextField.getText();
+        MessageDigest md = MessageDigest.getInstance("MD5");
+        md.update(salt.getBytes());
+        byte[] bytes = md.digest(password.getBytes());
+        StringBuilder sb = new StringBuilder();
+        for(int i=0;i<bytes.length;i++)
+        {
+            sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
+        }
+        String hasedPassword = sb.toString();
         /*String salt = getSalt();
         MessageDigest md = MessageDigest.getInstance("MD5");
         md.update(salt.getBytes());
@@ -334,7 +357,7 @@ public class HelloController implements Initializable {
         //String encryptedString = AES.encrypt(password, secretKey);
         //String decryptedString = AES.decrypt(encryptedString, secretKey);
 
-        String verifyLogin = "SELECT count(1) FROM admin_sh WHERE username = '" + usernameTextField.getText() + "'" + "AND parola ='" + enterPasswordField.getText() + "'";
+        String verifyLogin = "SELECT count(1) FROM admin_sh WHERE username = '" + usernameTextField.getText() + "'" + "AND parola ='" + hasedPassword + "'";
         String verifyPassword = "SELECT password from account_user where username = '" + usernameTextField.getText() + "'";
 
         //String decryptedString = AES.decrypt(verifyPassword);
