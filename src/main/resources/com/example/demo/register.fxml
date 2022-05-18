@@ -14,7 +14,7 @@
    <children>
       <AnchorPane minWidth="-Infinity" prefHeight="564.0" prefWidth="524.0" style="-fx-background-color: #fcc0c7;">
          <children>
-            <ImageView fx:id="iconImageView" fitHeight="42.0" fitWidth="69.0" layoutX="29.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="iconImageView" fitHeight="46.0" fitWidth="46.0" layoutX="29.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../../../../images/4068309-200.png" />
                </image>
