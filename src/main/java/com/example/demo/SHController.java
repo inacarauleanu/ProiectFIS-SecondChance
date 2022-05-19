@@ -43,7 +43,7 @@ private ImageView iconImageView;
         iconOrdersImage.setImage(iconImage2);
 
         File iconFile3 = new File("images/donate.png");
-        Image iconImage3 = new Image(iconFile2.toURI().toString());
+        Image iconImage3 = new Image(iconFile3.toURI().toString());
         iconDonations.setImage(iconImage3);
 
     }
