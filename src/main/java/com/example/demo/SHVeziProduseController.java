@@ -28,6 +28,8 @@ import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import static com.example.demo.HelloController.username;
+
 public class SHVeziProduseController implements Initializable{
     @FXML
     private TableView<Produs> produseSHTable;
@@ -106,13 +108,13 @@ public class SHVeziProduseController implements Initializable{
         try {
             produsList.clear();
 
-            query = "select * from produse_sh";
+            query = "select * from produse_sh WHERE usernameSH = '" + username + "'";
             preparedStatement = connection.prepareStatement(query);
             resultSet = preparedStatement.executeQuery();
 
             while(resultSet.next())
             {
-                produsList.add(new Produs(resultSet.getInt("id"),
+                produsList.add(new Produs(username, resultSet.getInt("id"),
                         resultSet.getString("Denumire"),
                         resultSet.getString("Marime"),
                         resultSet.getString("Culoare"),
@@ -267,10 +269,10 @@ public class SHVeziProduseController implements Initializable{
         String color = colorTextField.getText();
         String size = sizeTextField.getText();
         String price = priceTextField.getText();
-        String insertFields = "INSERT INTO produse_sh (ID, Denumire, Pret, Marime, Culoare) VALUES('";
-        String insertValues = id + "','" + denumire + "','" + price + "','" + size + "','" + color + "')";
+        String insertFields = "INSERT INTO produse_sh (usernameSH, ID, Denumire, Pret, Marime, Culoare) VALUES('";
+        String insertValues = username+ "','" + id + "','" + denumire + "','" + price + "','" + size + "','" + color + "')";
         String insertToRegister = insertFields + insertValues;
-        String searchID = "SELECT count(1) FROM produse_sh WHERE ID='"+id+"'";
+        String searchID = "SELECT count(1) FROM produse_sh WHERE ID='"+id+"'" + "AND usernameSH = '" + username + "'";
         try {
             Statement statement = connectionDB.createStatement();
             Statement statement1 = connectionDB.createStatement();

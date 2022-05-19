@@ -1,14 +1,18 @@
 package com.example.demo;
 
+import static com.example.demo.HelloController.username;
+
 public class Produs {
     int id;
     String denumire;
     String size;
     String color;
     int price;
+    String usernameSH;
 
-    public Produs(int id, String denumire, String size, String color, int price)
+    public Produs(String usernameSH, int id, String denumire, String size, String color, int price)
     {
+        usernameSH = username;
         this.id=id;
         this.denumire=denumire;
         this.size=size;
