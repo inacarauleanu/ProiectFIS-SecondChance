@@ -18,11 +18,11 @@
       </Label>
       <Button fx:id="closeButton1" layoutX="658.0" layoutY="1.0" mnemonicParsing="false" onAction="#closeButton1OnAction" prefHeight="14.0" prefWidth="42.0" text="X" />
       <TableView fx:id="SHTable" layoutX="14.0" layoutY="49.0" prefHeight="316.0" prefWidth="330.0">
-        <columns>
-          <TableColumn fx:id="usernameCol" prefWidth="119.60004425048828" text="USERNAME" />
-          <TableColumn fx:id="emailCol" prefWidth="124.00006103515625" text="EMAIL" />
+         <columns>
+            <TableColumn fx:id="usernameCol" prefWidth="119.60004425048828" text="USERNAME" />
+            <TableColumn fx:id="emailCol" prefWidth="124.00006103515625" text="EMAIL" />
             <TableColumn fx:id="idCol" minWidth="6.7999267578125" prefWidth="96.39999389648438" text="ID" />
-        </columns>
+         </columns>
       </TableView>
       <Label layoutX="408.0" layoutY="56.0" text="Please insert the ID of the SH" />
       <TextField fx:id="idSH" layoutX="584.0" layoutY="52.0" prefHeight="25.0" prefWidth="102.0" promptText="ID of the SH" />
