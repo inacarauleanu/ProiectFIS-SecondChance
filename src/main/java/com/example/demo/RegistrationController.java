@@ -148,17 +148,7 @@ private static String encodePassword(String salt, String password) {
         String password = setPasswordField.getText();
         String email = emailTextField.getText();
         String role = myChoiceBox.getSelectionModel().getSelectedItem();
-       /* String encodePass;
-        String salt = username;
-        MessageDigest md= MessageDigest.getInstance("SHA-512");
-        md.update(salt.getBytes(StandardCharsets.UTF_8));
 
-        byte[] hasedPass = md.digest(password.getBytes(StandardCharsets.UTF_8));
-        encodePass=new String(hasedPass, StandardCharsets.UTF_8).
-                replace("\"",""); */
-
-
-      // String passwordToHash = encodePassword(username,password);
         String salt = username;
         MessageDigest md = MessageDigest.getInstance("MD5");
         md.update(salt.getBytes());

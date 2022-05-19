@@ -4,16 +4,13 @@ import javafx.application.Platform;
 import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
@@ -22,6 +19,7 @@ import javafx.stage.StageStyle;
 
 import java.io.File;
 import java.net.URL;
+import java.security.NoSuchAlgorithmException;
 import java.sql.*;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -40,9 +38,21 @@ public class ClientDonatieSHController implements  Initializable{
     @FXML
     private TableColumn<SH, SH> emailCol;
     @FXML
-    private TextField idSH;
+    private TextField usernameSH;
     @FXML
     private Button goBack;
+    @FXML
+    private TextField nameP;
+    @FXML
+    private TextField colorP;
+    @FXML
+    private TextField sizeP;
+    @FXML
+    private DatePicker dateP;
+    @FXML
+    private Button donateButton;
+    @FXML
+    private Label warningLabel;
 
 
     String query = null;
@@ -108,8 +118,46 @@ public class ClientDonatieSHController implements  Initializable{
     public void print(MouseEvent mouseEvent) {
     }
 
+    public void donateButtonOnAction(ActionEvent event) throws NoSuchAlgorithmException{
+        if(nameP.getText().isBlank()==false && usernameSH.getText().isBlank()==false && colorP.getText().isBlank()==false && sizeP.getText().isBlank()==false && dateP.getEditor().getText().isBlank()==false){
+            donateToSH();
+        }
+        else {
+            warningLabel.setText("Please complete all the empty fields!");
+        }
+    }
+
+    public void donateToSH() throws NoSuchAlgorithmException {
+        DatabaseConnection connection2 = new DatabaseConnection();
+        Connection connectionDB = connection2.getConnection();
+
+        String usernamesh = usernameSH.getText();
+        String nameproduct= nameP.getText();
+        String colorproduct = colorP.getText();
+        String sizeproduct = sizeP.getText();
+        String datedonation = dateP.getEditor().getText();
+
+        String insertFieldsDonatieSH = "INSERT INTO donatii_sh (usernameSH, productName, productColor, productSize, date) VALUES ('";
+        String insertvaluesD = usernamesh + "','" + nameproduct + "','" + colorproduct + "','" + sizeproduct + "','" + datedonation + "')";
+        String verifySH = "SELECT count(1) FROM admin_sh WHERE username = '" + usernamesh + "' ";
+        String insertintable = insertFieldsDonatieSH + insertvaluesD;
 
 
+        int ok=0;
 
+        try {
+            Statement statement = connectionDB.createStatement();
+            ResultSet queryResult = statement.executeQuery(verifySH);
+            while(queryResult.next()){
+                if(queryResult.getInt(1)==0)
+                {warningLabel.setText("Please insert a valid username!");   }
+                else ok=1;
+            }
+           if(ok==1)
+            { statement.executeUpdate(insertintable);
+            warningLabel.setText("Thank you for you donation! :)");}
 
-}
+        } catch (Exception e) { e.printStackTrace();   e.getCause();}}
+    }
+
+//}
