@@ -2,14 +2,18 @@ package com.example.demo;
 
 public class CLIENT {
     private String username;
-    private String role;
+    //private String role;
 
-    public CLIENT(String username, String role){
+    public CLIENT(String username){
         this.username= username;
-        this.role=role;
+       // this.role=role;
     }
 
-    public String getRole(){
-        return this.role;
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getUsername() {
+        return username;
     }
 }

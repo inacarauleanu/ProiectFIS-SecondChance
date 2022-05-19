@@ -45,6 +45,7 @@ public class HelloController implements Initializable {
     @FXML
     private Label myLabel;
     private String[] role1 = {"CLIENT", "ONG", "SH"};
+    public static String username = "";
     /*<<<<<<< HEAD
 
     =======
@@ -230,8 +231,11 @@ public class HelloController implements Initializable {
         byte[] hasedPass1 = md.digest(password.getBytes(StandardCharsets.UTF_8));
         encodePass=new String(hasedPass1, StandardCharsets.UTF_8).
                 replace("\"","");*/
-
-        String verifyLogin = "SELECT count(1) FROM account_user WHERE username = '" + usernameTextField.getText() + "'" + "AND password ='" + hasedPassword + "'";
+        String username1 = usernameTextField.getText();
+        //CLIENT client = new CLIENT(username);
+       // client.setUsername(username);
+        username = username1;
+        String verifyLogin = "SELECT count(1) FROM account_user WHERE username = '" + username1 + "'" + "AND password ='" + hasedPassword + "'";
         String verifyPassword = "SELECT password from account_user where username = '" + usernameTextField.getText() + "'";
 
         //String decryptedString = AES.decrypt(verifyPassword);
@@ -293,7 +297,8 @@ public class HelloController implements Initializable {
         //final String secretKey = "ssshhhhhhhhhhh!!!!";
         //String encryptedString = AES.encrypt(password, secretKey);
         //String decryptedString = AES.decrypt(encryptedString, secretKey);
-
+        String username1 = usernameTextField.getText();
+        username =username1;
         String verifyLogin = "SELECT count(1) FROM admin_ong WHERE username = '" + usernameTextField.getText() + "'" + "AND parola ='" + hasedPassword + "'";
         String verifyPassword = "SELECT password from account_user where username = '" + usernameTextField.getText() + "'";
 
@@ -371,6 +376,8 @@ public class HelloController implements Initializable {
         //final String secretKey = "ssshhhhhhhhhhh!!!!";
         //String encryptedString = AES.encrypt(password, secretKey);
         //String decryptedString = AES.decrypt(encryptedString, secretKey);
+        String username1 = usernameTextField.getText();
+        username =username1;
 
         String verifyLogin = "SELECT count(1) FROM admin_sh WHERE username = '" + usernameTextField.getText() + "'" + "AND parola ='" + hasedPassword + "'";
         String verifyPassword = "SELECT password from account_user where username = '" + usernameTextField.getText() + "'";

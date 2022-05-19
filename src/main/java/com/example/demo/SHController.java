@@ -70,5 +70,19 @@ private ImageView iconImageView;
 
 
     public void veziDonatiiSH(ActionEvent actionEvent) {
+        try{
+            FXMLLoader fxmlLoader = new FXMLLoader(SHVeziProduseController.class.getResource("seeDonationsSH.fxml"));
+            Scene scene = new Scene(fxmlLoader.load(), 600, 400);
+            Stage clientStage = new Stage();
+            clientStage.initStyle(StageStyle.UNDECORATED);
+            clientStage.setScene(scene);
+            clientStage.show();
+        }catch(Exception e){
+            e.printStackTrace();
+            e.getCause();
+        }
+
+
     }
+
 }
