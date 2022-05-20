@@ -271,8 +271,9 @@ public class SHVeziProduseController implements Initializable{
         String price = priceTextField.getText();
         String insertFields = "INSERT INTO produse_sh (usernameSH, ID, Denumire, Pret, Marime, Culoare) VALUES('";
         String insertValues = username+ "','" + id + "','" + denumire + "','" + price + "','" + size + "','" + color + "')";
-        String insertToRegister = insertFields + insertValues;
-        String searchID = "SELECT count(1) FROM produse_sh WHERE ID='"+id+"'" + "AND usernameSH = '" + username + "'";
+        //String continuare = "WHERE usernameSH='" + username +"'";
+        String insertToRegister = insertFields + insertValues; //+ continuare;
+        String searchID = "SELECT count(1) FROM produse_sh WHERE ID='"+id+"'";
         try {
             Statement statement = connectionDB.createStatement();
             Statement statement1 = connectionDB.createStatement();
@@ -300,8 +301,8 @@ public class SHVeziProduseController implements Initializable{
         DatabaseConnection connection = new DatabaseConnection();
         Connection connectionDB = connection.getConnection();
         String id = idTextField.getText();
-        String deleteField = "DELETE FROM produse_sh WHERE ID='" + id + "'";
-        String searchID = "SELECT count(1) FROM produse_sh WHERE ID='"+id+"'";
+        String deleteField = "DELETE FROM produse_sh WHERE ID='" + id + "'" + "AND usernameSH='" + username + "'";
+        String searchID = "SELECT count(1) FROM produse_sh WHERE ID='"+id+"'" + "AND usernameSH='" + username +"'";
 
         try {
             Statement statement = connectionDB.createStatement();
@@ -344,8 +345,8 @@ public class SHVeziProduseController implements Initializable{
                 + "Pret='"+price+"'" + ","
                 +"Marime='"+size+"'"+","
                 +"Culoare='"+color+"'"
-                +"WHERE ID='" + id + "'";
-        String searchID = "SELECT count(1) FROM produse_sh WHERE ID='"+id+"'";
+                +"WHERE ID='" + id + "'" + "AND usernameSH='"+username+"'";
+        String searchID = "SELECT count(1) FROM produse_sh WHERE ID='"+id+"'" + "AND usernameSH='"+username+"'";
         try {
             Statement statement = connectionDB.createStatement();
             Statement statement1 = connectionDB.createStatement();

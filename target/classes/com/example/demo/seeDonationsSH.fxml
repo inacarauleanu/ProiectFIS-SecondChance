@@ -7,16 +7,15 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #fcc0c7;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.SHVeziDonatiiController">
    <children>
       <TableView fx:id="donatiiSHTable" layoutX="122.0" layoutY="64.0" prefHeight="309.0" prefWidth="399.0">
          <columns>
             <TableColumn fx:id="id_donatieCol" maxWidth="70.0" prefWidth="70.0" text="ID" />
-            <TableColumn fx:id="productNameCol" prefWidth="98.0" text="Denumire" />
-            <TableColumn fx:id="productColorCol" prefWidth="71.0" text="Culoare" />
-            <TableColumn fx:id="productSizeCol" prefWidth="71.0" text="Mărime" />
-            <TableColumn fx:id="dateCol" prefWidth="88.0" text="Data Donatiei" />
+            <TableColumn fx:id="productNameCol" prefWidth="98.0" text="Name" />
+            <TableColumn fx:id="productColorCol" prefWidth="71.0" text="Color" />
+            <TableColumn fx:id="productSizeCol" prefWidth="71.0" text="Size" />
+            <TableColumn fx:id="dateCol" prefWidth="88.0" text="Donation Date" />
          </columns>
       </TableView>
       <Text layoutX="40.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Your Store's Donations">

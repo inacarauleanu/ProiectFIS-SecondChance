@@ -61,12 +61,29 @@ public class ClientController implements Initializable {
         }
     }
 
+    public  void createComandaForm(){
+        try{
+
+            Parent root3 = FXMLLoader.load(getClass().getResource("ClientCumparaVeziSH.fxml"));
+            Stage clientStage2 = new Stage();
+            clientStage2.initStyle(StageStyle.UNDECORATED);
+            clientStage2.setScene(new Scene(root3,600,400));
+            clientStage2.show();
+
+        }  catch (Exception e) {
+            e.printStackTrace();
+            e.getCause();
+        }
+    }
+
     public void donateButton1OnAction(ActionEvent event){
         createDonatieForm();
     }
 
 
-    public void buyButton1OnAction(ActionEvent event){}
+    public void buyButton1OnAction(ActionEvent event){
+        createComandaForm();
+    }
 
 }
 
