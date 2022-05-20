@@ -5,7 +5,6 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
@@ -18,10 +17,10 @@
       <TableView fx:id="produseSHTable" layoutX="17.0" layoutY="118.0" prefHeight="431.0" prefWidth="392.0">
          <columns>
             <TableColumn fx:id="idCol" maxWidth="70.0" prefWidth="70.0" text="ID" />
-            <TableColumn fx:id="denumireCol" prefWidth="98.0" text="Denumire" />
-            <TableColumn fx:id="colorCol" prefWidth="71.0" text="Culoare" />
-            <TableColumn fx:id="sizeCol" prefWidth="71.0" text="Mărime" />
-            <TableColumn fx:id="priceCol" prefWidth="82.0" text="Preț" />
+            <TableColumn fx:id="denumireCol" prefWidth="98.0" text="Name" />
+            <TableColumn fx:id="colorCol" prefWidth="71.0" text="Color" />
+            <TableColumn fx:id="sizeCol" prefWidth="71.0" text="Size" />
+            <TableColumn fx:id="priceCol" prefWidth="82.0" text="Price" />
          </columns>
       </TableView>
       <Pane layoutX="1.0" layoutY="48.0" prefHeight="6.0" prefWidth="760.0" style="-fx-background-color: #fcc0c7;" />
@@ -60,10 +59,10 @@
       <TextField fx:id="colorTextField" layoutX="588.0" layoutY="271.0" />
       <TextField fx:id="priceTextField" alignment="CENTER" layoutX="588.0" layoutY="321.0" />
       <Text layoutX="513.0" layoutY="123.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID" />
-      <Text layoutX="510.0" layoutY="175.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Denumire" />
+      <Text layoutX="510.0" layoutY="175.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name" />
       <Text layoutX="514.0" layoutY="227.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Size" />
-      <Text layoutX="515.0" layoutY="288.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Culoare" />
-      <Text layoutX="519.0" layoutY="338.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pret" />
+      <Text layoutX="515.0" layoutY="288.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Color" />
+      <Text layoutX="519.0" layoutY="338.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Price" />
       <Button fx:id="addButtonSH" layoutX="496.0" layoutY="401.0" mnemonicParsing="false" onAction="#addProductSH" text="Add Product" />
       <Button fx:id="updateButtonSH" layoutX="615.0" layoutY="401.0" mnemonicParsing="false" onAction="#updateProductSH" text="Update Product" />
       <Button fx:id="deleteButtonSH" layoutX="552.0" layoutY="461.0" mnemonicParsing="false" onAction="#deleteProductSH" text="Delete Product" />
