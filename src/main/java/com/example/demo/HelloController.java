@@ -45,10 +45,11 @@ public class HelloController implements Initializable {
     @FXML
     private Label myLabel;
     private String[] role1 = {"CLIENT", "ONG", "SH"};
-/*<<<<<<< HEAD
+    public static String username = "";
+    /*<<<<<<< HEAD
 
-=======
->>>>>>> origin/main*/
+    =======
+    >>>>>>> origin/main*/
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         File brandingFile = new File("images/poza.jpg");
@@ -73,16 +74,16 @@ public class HelloController implements Initializable {
     }
 
     public void signupButtonOnAction(ActionEvent event)
-   {
+    {
 
-       //if(usernameTextField.getText().isBlank()==false && enterPasswordField.getText().isBlank()==false){
-           //loginMessageLabel.setText("You try to login");
-          // validateSignUp();
-       //}else{
-          // loginMessageLabel.setText("Please enter username and password!");
-           createAccountForm();
-       //}
-   }
+        //if(usernameTextField.getText().isBlank()==false && enterPasswordField.getText().isBlank()==false){
+        //loginMessageLabel.setText("You try to login");
+        // validateSignUp();
+        //}else{
+        // loginMessageLabel.setText("Please enter username and password!");
+        createAccountForm();
+        //}
+    }
     public void loginButtonOnAction(ActionEvent event) throws NoSuchAlgorithmException, NoSuchProviderException
     {
 
@@ -99,10 +100,10 @@ public class HelloController implements Initializable {
             loginMessageLabel.setText("Please enter username and password!");
         }
     }
-   public void CancelButtonOnAction(ActionEvent event)
-   {
-       Stage stage = (Stage) cancelButton.getScene().getWindow();
-       stage.close();
+    public void CancelButtonOnAction(ActionEvent event)
+    {
+        Stage stage = (Stage) cancelButton.getScene().getWindow();
+        stage.close();
 //>>>>>>> origin/main
     }
     /*private static String getSalt() throws NoSuchAlgorithmException, NoSuchProviderException
@@ -154,17 +155,17 @@ public class HelloController implements Initializable {
             sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
         }
         String hasedPassword = sb.toString();*/
-        //final String secretKey = "ssshhhhhhhhhhh!!!!";
-        //String encryptedString = AES.encrypt(password, secretKey);
-        //String decryptedString = AES.decrypt(encryptedString, secretKey);
+    //final String secretKey = "ssshhhhhhhhhhh!!!!";
+    //String encryptedString = AES.encrypt(password, secretKey);
+    //String decryptedString = AES.decrypt(encryptedString, secretKey);
 
-       // String verifyLogin = "SELECT count(1) FROM account_user WHERE username = '" + usernameTextField.getText() + "'" + "AND password ='" +enterPasswordField.getText() + "'";
-       // String verifyPassword = "SELECT password from account_user where username = '"+usernameTextField.getText()+"'";
+    // String verifyLogin = "SELECT count(1) FROM account_user WHERE username = '" + usernameTextField.getText() + "'" + "AND password ='" +enterPasswordField.getText() + "'";
+    // String verifyPassword = "SELECT password from account_user where username = '"+usernameTextField.getText()+"'";
 
-        //String decryptedString = AES.decrypt(verifyPassword);
-        //System.out.println(decryptedString);
-        //String verifyRole = "SELECT email from account_user where username = '" + usernameTextField.getText() + "'";
-       // String verifyLogin = "SELECT count(1) FROM account_user WHERE (username = '" + usernameTextField.getText() + "'" + "AND STRCMP('" +enterPasswordField.getText() + "'" +  "," + "'" + decryptedString + "'" + ")" +"=0" +")" ;
+    //String decryptedString = AES.decrypt(verifyPassword);
+    //System.out.println(decryptedString);
+    //String verifyRole = "SELECT email from account_user where username = '" + usernameTextField.getText() + "'";
+    // String verifyLogin = "SELECT count(1) FROM account_user WHERE (username = '" + usernameTextField.getText() + "'" + "AND STRCMP('" +enterPasswordField.getText() + "'" +  "," + "'" + decryptedString + "'" + ")" +"=0" +")" ;
        /* try{
             Statement statement = connectDB.createStatement();
             ResultSet queryResult = statement.executeQuery(verifyLogin);
@@ -190,7 +191,7 @@ public class HelloController implements Initializable {
             loginMessageLabel.setText("Please enter username and password!");
         }
 <<<<<<< HEAD*/
-  //  }
+    //  }
 
     /*public void CancelButtonOnAction(ActionEvent event) {
         Stage stage = (Stage) cancelButton.getScene().getWindow();
@@ -230,8 +231,11 @@ public class HelloController implements Initializable {
         byte[] hasedPass1 = md.digest(password.getBytes(StandardCharsets.UTF_8));
         encodePass=new String(hasedPass1, StandardCharsets.UTF_8).
                 replace("\"","");*/
-
-        String verifyLogin = "SELECT count(1) FROM account_user WHERE username = '" + usernameTextField.getText() + "'" + "AND password ='" + hasedPassword + "'";
+        String username1 = usernameTextField.getText();
+        //CLIENT client = new CLIENT(username);
+       // client.setUsername(username);
+        username = username1;
+        String verifyLogin = "SELECT count(1) FROM account_user WHERE username = '" + username1 + "'" + "AND password ='" + hasedPassword + "'";
         String verifyPassword = "SELECT password from account_user where username = '" + usernameTextField.getText() + "'";
 
         //String decryptedString = AES.decrypt(verifyPassword);
@@ -293,7 +297,8 @@ public class HelloController implements Initializable {
         //final String secretKey = "ssshhhhhhhhhhh!!!!";
         //String encryptedString = AES.encrypt(password, secretKey);
         //String decryptedString = AES.decrypt(encryptedString, secretKey);
-
+        String username1 = usernameTextField.getText();
+        username =username1;
         String verifyLogin = "SELECT count(1) FROM admin_ong WHERE username = '" + usernameTextField.getText() + "'" + "AND parola ='" + hasedPassword + "'";
         String verifyPassword = "SELECT password from account_user where username = '" + usernameTextField.getText() + "'";
 
@@ -308,7 +313,7 @@ public class HelloController implements Initializable {
                 //System.out.println(verifyLogin);
                 if (queryResult.getInt(1) == 1) {
                     if (myChoiceBox1.getSelectionModel().getSelectedItem() == "ONG") {
-                        //createClientForm();
+                        createONGForm();
                         loginMessageLabel.setText("Congrats!");
                     }
                     //  createAccountForm();
@@ -325,6 +330,21 @@ public class HelloController implements Initializable {
         }
 
 
+    }
+
+    private void createONGForm() {
+        try {
+
+            Parent root1 = FXMLLoader.load(getClass().getResource("ongFirstPage.fxml"));
+            Stage clientStage = new Stage();
+            clientStage.initStyle(StageStyle.UNDECORATED);
+            clientStage.setScene(new Scene(root1, 598, 503));
+            clientStage.show();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            e.getCause();
+        }
     }
 
 
@@ -356,6 +376,8 @@ public class HelloController implements Initializable {
         //final String secretKey = "ssshhhhhhhhhhh!!!!";
         //String encryptedString = AES.encrypt(password, secretKey);
         //String decryptedString = AES.decrypt(encryptedString, secretKey);
+        String username1 = usernameTextField.getText();
+        username =username1;
 
         String verifyLogin = "SELECT count(1) FROM admin_sh WHERE username = '" + usernameTextField.getText() + "'" + "AND parola ='" + hasedPassword + "'";
         String verifyPassword = "SELECT password from account_user where username = '" + usernameTextField.getText() + "'";
@@ -459,17 +481,17 @@ public class HelloController implements Initializable {
             sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
         }
         String hasedPassword = sb.toString();*/
-        //final String secretKey = "ssshhhhhhhhhhh!!!!";
-        //String encryptedString = AES.encrypt(password, secretKey);
-        //String decryptedString = AES.decrypt(encryptedString, secretKey);
+//final String secretKey = "ssshhhhhhhhhhh!!!!";
+//String encryptedString = AES.encrypt(password, secretKey);
+//String decryptedString = AES.decrypt(encryptedString, secretKey);
 
-      //  String verifyLogin = "SELECT count(1) FROM admin_ong WHERE username = '" + usernameTextField.getText() + "'" + "AND password ='" +enterPasswordField.getText() + "'";
-       // String verifyPassword = "SELECT password from account_user where username = '"+usernameTextField.getText()+"'";
+//  String verifyLogin = "SELECT count(1) FROM admin_ong WHERE username = '" + usernameTextField.getText() + "'" + "AND password ='" +enterPasswordField.getText() + "'";
+// String verifyPassword = "SELECT password from account_user where username = '"+usernameTextField.getText()+"'";
 
-        //String decryptedString = AES.decrypt(verifyPassword);
-        //System.out.println(decryptedString);
-        //String verifyRole = "SELECT email from account_user where username = '" + usernameTextField.getText() + "'";
-        // String verifyLogin = "SELECT count(1) FROM account_user WHERE (username = '" + usernameTextField.getText() + "'" + "AND STRCMP('" +enterPasswordField.getText() + "'" +  "," + "'" + decryptedString + "'" + ")" +"=0" +")" ;
+//String decryptedString = AES.decrypt(verifyPassword);
+//System.out.println(decryptedString);
+//String verifyRole = "SELECT email from account_user where username = '" + usernameTextField.getText() + "'";
+// String verifyLogin = "SELECT count(1) FROM account_user WHERE (username = '" + usernameTextField.getText() + "'" + "AND STRCMP('" +enterPasswordField.getText() + "'" +  "," + "'" + decryptedString + "'" + ")" +"=0" +")" ;
        /* try{
             Statement statement = connectDB.createStatement();
             ResultSet queryResult = statement.executeQuery(verifyLogin);
@@ -513,17 +535,17 @@ public class HelloController implements Initializable {
             sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
         }
         String hasedPassword = sb.toString();*/
-        //final String secretKey = "ssshhhhhhhhhhh!!!!";
-        //String encryptedString = AES.encrypt(password, secretKey);
-        //String decryptedString = AES.decrypt(encryptedString, secretKey);
+//final String secretKey = "ssshhhhhhhhhhh!!!!";
+//String encryptedString = AES.encrypt(password, secretKey);
+//String decryptedString = AES.decrypt(encryptedString, secretKey);
 
-      //  String verifyLogin = "SELECT count(1) FROM admin_sh WHERE username = '" + usernameTextField.getText() + "'" + "AND parola ='" +enterPasswordField.getText() + "'";
-       // String verifyPassword = "SELECT password from account_user where username = '"+usernameTextField.getText()+"'";
+//  String verifyLogin = "SELECT count(1) FROM admin_sh WHERE username = '" + usernameTextField.getText() + "'" + "AND parola ='" +enterPasswordField.getText() + "'";
+// String verifyPassword = "SELECT password from account_user where username = '"+usernameTextField.getText()+"'";
 
-        //String decryptedString = AES.decrypt(verifyPassword);
-        //System.out.println(decryptedString);
-        //String verifyRole = "SELECT email from account_user where username = '" + usernameTextField.getText() + "'";
-        // String verifyLogin = "SELECT count(1) FROM account_user WHERE (username = '" + usernameTextField.getText() + "'" + "AND STRCMP('" +enterPasswordField.getText() + "'" +  "," + "'" + decryptedString + "'" + ")" +"=0" +")" ;
+//String decryptedString = AES.decrypt(verifyPassword);
+//System.out.println(decryptedString);
+//String verifyRole = "SELECT email from account_user where username = '" + usernameTextField.getText() + "'";
+// String verifyLogin = "SELECT count(1) FROM account_user WHERE (username = '" + usernameTextField.getText() + "'" + "AND STRCMP('" +enterPasswordField.getText() + "'" +  "," + "'" + decryptedString + "'" + ")" +"=0" +")" ;
        /* try{
             Statement statement = connectDB.createStatement();
             ResultSet queryResult = statement.executeQuery(verifyLogin);

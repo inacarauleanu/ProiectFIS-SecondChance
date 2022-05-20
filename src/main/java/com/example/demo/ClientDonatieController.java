@@ -128,8 +128,7 @@ public class ClientDonatieController implements Initializable {
     }
 
     public void ongButtonOnAction(ActionEvent event){
-
-
+        createDonatieONGForm();
     }
 
     public  void createDonatieForm(){
@@ -146,5 +145,20 @@ public class ClientDonatieController implements Initializable {
             e.getCause();
         }
     }
+
+    public void createDonatieONGForm(){
+        try{
+
+            Parent root4 = FXMLLoader.load(getClass().getResource("DonatieONG.fxml"));
+            Stage clientStage2 = new Stage();
+            clientStage2.initStyle(StageStyle.UNDECORATED);
+            clientStage2.setScene(new Scene(root4,701,400));
+            clientStage2.show();
+
+        }  catch (Exception e) {
+            e.printStackTrace();
+            e.getCause();
+        }
+        }
 
 }

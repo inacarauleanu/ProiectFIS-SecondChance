@@ -25,6 +25,9 @@ private ImageView iconImageView;
     private ImageView iconProductsImage;
     @FXML
     private ImageView iconOrdersImage;
+    @FXML
+    private ImageView iconDonations;
+
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
         File iconFile = new File("images/welcome.png");
@@ -38,6 +41,10 @@ private ImageView iconImageView;
         File iconFile2 = new File("images/img_355401.png");
         Image iconImage2 = new Image(iconFile2.toURI().toString());
         iconOrdersImage.setImage(iconImage2);
+
+        File iconFile3 = new File("images/donate.png");
+        Image iconImage3 = new Image(iconFile3.toURI().toString());
+        iconDonations.setImage(iconImage3);
 
     }
     public void CancelButtonOnAction(ActionEvent event) {
@@ -61,5 +68,21 @@ private ImageView iconImageView;
 
     }
 
+
+    public void veziDonatiiSH(ActionEvent actionEvent) {
+        try{
+            FXMLLoader fxmlLoader = new FXMLLoader(SHVeziProduseController.class.getResource("seeDonationsSH.fxml"));
+            Scene scene = new Scene(fxmlLoader.load(), 600, 400);
+            Stage clientStage = new Stage();
+            clientStage.initStyle(StageStyle.UNDECORATED);
+            clientStage.setScene(scene);
+            clientStage.show();
+        }catch(Exception e){
+            e.printStackTrace();
+            e.getCause();
+        }
+
+
+    }
 
 }

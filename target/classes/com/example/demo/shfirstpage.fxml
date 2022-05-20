@@ -13,7 +13,7 @@
    <center>
       <AnchorPane style="-fx-background-color: #fcc0c7;" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="SeeProducts" alignment="CENTER" contentDisplay="BOTTOM" layoutX="69.0" layoutY="215.0" mnemonicParsing="false" onAction="#veziProduseForm" style="-fx-background-color: #fcc0c7;" text="See Prouducts">
+            <Button fx:id="SeeProducts" alignment="CENTER" contentDisplay="BOTTOM" layoutX="19.0" layoutY="225.0" mnemonicParsing="false" onAction="#veziProduseForm" style="-fx-background-color: #fcc0c7;" text="See Prouducts">
                <font>
                   <Font name="Gabriola" size="24.0" />
                </font>
@@ -30,7 +30,7 @@
                   <Font name="Gabriola" size="22.0" />
                </font>
             </Label>
-            <Button fx:id="SeeOrders" alignment="CENTER" contentDisplay="BOTTOM" layoutX="365.0" layoutY="214.0" mnemonicParsing="false" style="-fx-background-color: #fcc0c7;" text="See Orders">
+            <Button fx:id="SeeOrders" alignment="CENTER" contentDisplay="BOTTOM" layoutX="427.0" layoutY="217.0" mnemonicParsing="false" style="-fx-background-color: #fcc0c7;" text="See Orders">
                <font>
                   <Font name="Gabriola" size="24.0" />
                </font>
@@ -56,6 +56,18 @@
                   <Blend />
                </effect>
             </Label>
+            <Button fx:id="SeeDonationsSH" alignment="CENTER" contentDisplay="BOTTOM" layoutX="199.0" layoutY="225.0" mnemonicParsing="false" onAction="#veziDonatiiSH" style="-fx-background-color: #fcc0c7;" text="See Donations">
+               <font>
+                  <Font name="Gabriola" size="24.0" />
+               </font>
+               <graphic>
+                  <ImageView fx:id="iconDonations" fitHeight="139.0" fitWidth="171.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../../images/donate.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
          </children>
       </AnchorPane>
    </center>
