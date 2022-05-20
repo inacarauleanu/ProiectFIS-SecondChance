@@ -87,7 +87,6 @@ public class RegistrationController implements Initializable {
                 if (myChoiceBox.getSelectionModel().getSelectedItem() == "SH") registerSH();
                 if (myChoiceBox.getSelectionModel().getSelectedItem() == "ONG") registerONG();
                 confirmPasswordLabel.setText(" ");
-
             } else {
                 confirmPasswordLabel.setText("Password does not match!");
             }
