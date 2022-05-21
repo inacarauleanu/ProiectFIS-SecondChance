@@ -67,7 +67,7 @@ public class ClientController implements Initializable {
             Parent root3 = FXMLLoader.load(getClass().getResource("ClientCumparaVeziSH.fxml"));
             Stage clientStage2 = new Stage();
             clientStage2.initStyle(StageStyle.UNDECORATED);
-            clientStage2.setScene(new Scene(root3,600,400));
+            clientStage2.setScene(new Scene(root3,688,400));
             clientStage2.show();
 
         }  catch (Exception e) {
