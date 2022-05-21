@@ -25,6 +25,8 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import static com.example.demo.HelloController.username;
+
 public class ClientCumparaAlegeSH implements Initializable{
 
     @FXML
@@ -52,6 +54,7 @@ public class ClientCumparaAlegeSH implements Initializable{
     PreparedStatement preparedStatement = null;
     ResultSet resultSet = null;
     Produs produs = null;
+    static String usernamesh1 = "";
 
     ObservableList<SH> SHList = FXCollections.observableArrayList();
 
@@ -72,7 +75,6 @@ public class ClientCumparaAlegeSH implements Initializable{
     private void refreshTable() {
         try {
             SHList.clear();
-
             query1 = "select * from admin_sh";
             preparedStatement = connection.prepareStatement(query1);
             resultSet = preparedStatement.executeQuery();
@@ -123,8 +125,9 @@ public class ClientCumparaAlegeSH implements Initializable{
         DatabaseConnection connection2 = new DatabaseConnection();
         Connection connectionDB = connection2.getConnection();
 
-        String usernamesh = usernameSH.getText();
-        String verifySH = "SELECT count(1) FROM admin_sh WHERE username = '" + usernamesh + "' ";
+        usernamesh1 = usernameSH.getText();
+        // String username = usernameSH.getText();
+        String verifySH = "SELECT count(1) FROM admin_sh WHERE username = '" + usernamesh1 + "' ";
 
 
         int ok=0;
@@ -138,8 +141,23 @@ public class ClientCumparaAlegeSH implements Initializable{
                 else ok=1;
             }
             if(ok==1)
-            {
+            {  createAlegeForm();
                 }
 
         } catch (Exception e) { e.printStackTrace();   e.getCause();}}
+
+    public void createAlegeForm(){
+        try{
+
+            Parent root4 = FXMLLoader.load(getClass().getResource("ClientAlegeProduse.fxml"));
+            Stage clientStage2 = new Stage();
+            clientStage2.initStyle(StageStyle.UNDECORATED);
+            clientStage2.setScene(new Scene(root4,723,400));
+            clientStage2.show();
+
+        }  catch (Exception e) {
+            e.printStackTrace();
+            e.getCause();
+        }
+    }
 }

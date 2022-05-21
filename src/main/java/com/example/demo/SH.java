@@ -1,5 +1,7 @@
 package com.example.demo;
 
+import static com.example.demo.HelloController.username;
+
 public class SH {
     private int id_admin;
 private String firstname;
@@ -34,12 +36,12 @@ private String role;
     }
 
     public String getUsername() {
-        return username;
+      return username;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
+   public void setUsername(String username) {
+       this.username = username;
+}
 
     public String getPassword() {
         return password;
