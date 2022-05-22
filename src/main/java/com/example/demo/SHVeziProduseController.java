@@ -63,6 +63,9 @@ public class SHVeziProduseController implements Initializable{
     private TextField idTextField;
     @FXML
     private Label checkIDLabel;
+    @FXML
+    private Button goBack;
+
 
 
 
@@ -371,5 +374,10 @@ public class SHVeziProduseController implements Initializable{
             e.getCause();
         }
 
+    }
+
+    public void goBackOnAction(ActionEvent event){
+        Stage stage1 = (Stage) cancelButton.getScene().getWindow();
+        stage1.close();
     }
 }

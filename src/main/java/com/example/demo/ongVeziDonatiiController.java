@@ -34,6 +34,8 @@ public class ongVeziDonatiiController implements Initializable{
     @FXML
     private Button cancelButton;
     @FXML
+    private Button goBack;
+    @FXML
     private TableView<DonatieSH> donatiiONGTable;
     @FXML
     private TableColumn<DonatieSH, DonatieSH> id_donatieCol;
@@ -91,6 +93,11 @@ public class ongVeziDonatiiController implements Initializable{
 
         }
 
+    }
+
+    public void goBackOnAction(ActionEvent event){
+        Stage stage1 = (Stage) cancelButton.getScene().getWindow();
+        stage1.close();
     }
 
     public void CancelButtonOnAction(ActionEvent actionEvent) {
