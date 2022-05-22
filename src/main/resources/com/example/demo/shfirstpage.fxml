@@ -30,7 +30,7 @@
                   <Font name="Gabriola" size="22.0" />
                </font>
             </Label>
-            <Button fx:id="SeeOrders" alignment="CENTER" contentDisplay="BOTTOM" layoutX="427.0" layoutY="217.0" mnemonicParsing="false" style="-fx-background-color: #fcc0c7;" text="See Orders">
+            <Button fx:id="SeeOrders" alignment="CENTER" contentDisplay="BOTTOM" layoutX="427.0" layoutY="217.0" mnemonicParsing="false" onAction="#veziComenziForm" style="-fx-background-color: #fcc0c7;" text="See Orders">
                <font>
                   <Font name="Gabriola" size="24.0" />
                </font>
