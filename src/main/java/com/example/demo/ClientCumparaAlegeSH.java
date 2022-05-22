@@ -54,7 +54,7 @@ public class ClientCumparaAlegeSH implements Initializable{
     PreparedStatement preparedStatement = null;
     ResultSet resultSet = null;
     Produs produs = null;
-    static String usernamesh1 = "";
+    public static String usernamesh1 = "";
 
     ObservableList<SH> SHList = FXCollections.observableArrayList();
 
@@ -114,6 +114,7 @@ public class ClientCumparaAlegeSH implements Initializable{
 
     public void gotoshOnAction(ActionEvent event) throws NoSuchAlgorithmException{
         if( usernameSH.getText().isBlank()==false ){
+            usernamesh1 = usernameSH.getText();
             buyfromSH();
         }
         else {
@@ -125,7 +126,7 @@ public class ClientCumparaAlegeSH implements Initializable{
         DatabaseConnection connection2 = new DatabaseConnection();
         Connection connectionDB = connection2.getConnection();
 
-        usernamesh1 = usernameSH.getText();
+       // usernamesh1 = usernameSH.getText();
         // String username = usernameSH.getText();
         String verifySH = "SELECT count(1) FROM admin_sh WHERE username = '" + usernamesh1 + "' ";
 
@@ -142,6 +143,7 @@ public class ClientCumparaAlegeSH implements Initializable{
             }
             if(ok==1)
             {  createAlegeForm();
+                usernamesh1 = usernameSH.getText();
                 }
 
         } catch (Exception e) { e.printStackTrace();   e.getCause();}}
