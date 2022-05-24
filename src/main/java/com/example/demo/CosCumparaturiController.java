@@ -119,7 +119,7 @@ public class CosCumparaturiController implements Initializable{
     }
 
     public void closeButton1OnAction(ActionEvent event ){
-        cleanTable();
+        //cleanTable();
         Stage stage1 = (Stage) closeButton1.getScene().getWindow();
         stage1.close();
         Platform.exit();
@@ -138,6 +138,7 @@ public class CosCumparaturiController implements Initializable{
             totalLabel.setText(String.valueOf(total));
             //cleanTable();
             //refreshTable();
+            cleanTable();
         }
         else {
             warningLabel.setText("Please complete all the empty fields!");
