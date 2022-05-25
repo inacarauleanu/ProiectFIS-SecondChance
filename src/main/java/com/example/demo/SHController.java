@@ -85,4 +85,19 @@ private ImageView iconImageView;
 
     }
 
+    public void veziComenziForm(){
+        try{
+            FXMLLoader fxmlLoader = new FXMLLoader(SHVeziProduseController.class.getResource("SHVeziComenzi.fxml"));
+            Scene scene = new Scene(fxmlLoader.load(), 603, 497);
+            Stage clientStage = new Stage();
+            clientStage.initStyle(StageStyle.UNDECORATED);
+            clientStage.setScene(scene);
+            clientStage.show();
+        }catch(Exception e){
+            e.printStackTrace();
+            e.getCause();
+        }
+
+    }
+
 }

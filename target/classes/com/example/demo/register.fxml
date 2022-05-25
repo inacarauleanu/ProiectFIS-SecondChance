@@ -28,40 +28,40 @@
                </font>
             </Label>
             <Button fx:id="cancelButton" layoutX="500.0" layoutY="-1.0" mnemonicParsing="false" onAction="#CancelButtonOnAction" prefHeight="8.0" prefWidth="2.0" style="-fx-background-color: #fcfafa;" text="X" />
-            <Button fx:id="registerButton" layoutX="276.0" layoutY="507.0" mnemonicParsing="false" onAction="#registerButtonOnAction" prefHeight="36.0" prefWidth="160.0" style="-fx-background-color: #fcc0c7;" text="Register" textAlignment="CENTER">
+            <Button fx:id="registerButton" layoutX="276.0" layoutY="507.0" mnemonicParsing="false" onAction="#registerButtonOnAction" prefHeight="36.0" prefWidth="160.0" style="-fx-background-color: #ffffff;" text="Register" textAlignment="CENTER">
                <font>
-                  <Font size="15.0" />
+                  <Font name="Times New Roman" size="15.0" />
                </font>
             </Button>
-            <ChoiceBox fx:id="myChoiceBox" layoutX="94.0" layoutY="482.0" prefWidth="150.0" />
+            <ChoiceBox fx:id="myChoiceBox" layoutX="94.0" layoutY="482.0" prefWidth="150.0" style="-fx-background-color: #ffffff;" />
             <Label fx:id="myLabel" layoutX="94.0" layoutY="459.0" prefHeight="17.0" prefWidth="111.0" text="Pick your role">
                <font>
-                  <Font size="13.0" />
+                  <Font name="Times New Roman" size="15.0" />
                </font>
             </Label>
          </children>
       </AnchorPane>
       <Label layoutX="94.0" layoutY="96.0" text="Firstname">
          <font>
-            <Font size="13.0" />
+            <Font name="Times New Roman" size="15.0" />
          </font>
       </Label>
       <TextField fx:id="firstnameTextField" layoutX="94.0" layoutY="122.0" prefHeight="25.0" prefWidth="336.0" promptText="Firstname" />
       <Label layoutX="94.0" layoutY="158.0" text="Lastname">
          <font>
-            <Font size="13.0" />
+            <Font name="Times New Roman" size="15.0" />
          </font>
       </Label>
       <TextField fx:id="lastnameTextField" layoutX="94.0" layoutY="184.0" prefHeight="25.0" prefWidth="336.0" promptText="Lastname" />
       <Label layoutX="94.0" layoutY="221.0" text="Username">
          <font>
-            <Font size="13.0" />
+            <Font name="Times New Roman" size="15.0" />
          </font>
       </Label>
       <TextField fx:id="usernameTextField" layoutX="94.0" layoutY="247.0" prefHeight="25.0" prefWidth="336.0" promptText="Username" />
       <Label layoutX="94.0" layoutY="343.0" text="Password">
          <font>
-            <Font size="13.0" />
+            <Font name="Times New Roman" size="15.0" />
          </font>
       </Label>
       <PasswordField fx:id="setPasswordField" layoutX="94.0" layoutY="369.0" prefHeight="25.0" prefWidth="336.0" promptText="Password" />
@@ -73,7 +73,7 @@
       <PasswordField fx:id="confirmPasswordField" layoutX="94.0" layoutY="429.0" prefHeight="25.0" prefWidth="336.0" promptText="Confirm Password" />
       <Label layoutX="94.0" layoutY="281.0" text="Email">
          <font>
-            <Font size="13.0" />
+            <Font name="Times New Roman" size="15.0" />
          </font>
       </Label>
       <TextField fx:id="emailTextField" layoutX="94.0" layoutY="307.0" prefHeight="25.0" prefWidth="336.0" promptText="Email" />
@@ -84,7 +84,7 @@
       </Label>
       <Label fx:id="confirmPasswordLabel" alignment="CENTER" layoutX="113.0" layoutY="403.0" prefHeight="19.0" prefWidth="384.0" textFill="RED">
          <font>
-            <Font size="13.0" />
+            <Font name="Times New Roman" size="15.0" />
          </font>
       </Label>
       <Label fx:id="checkUsername" layoutX="170.0" layoutY="222.0" prefHeight="17.0" prefWidth="259.0" textFill="RED">

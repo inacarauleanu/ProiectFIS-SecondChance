@@ -22,16 +22,22 @@
                   <Font name="Berlin Sans FB Demi Bold" size="14.0" />
                </font>
             </Label>
-            <Label layoutX="144.0" layoutY="164.0" text="What do you want to choose?">
+            <Label layoutX="140.0" layoutY="164.0" prefHeight="19.0" prefWidth="256.0" text="What do you want to choose?">
                <font>
-                  <Font name="Arial Bold" size="18.0" />
+                  <Font name="Berlin Sans FB Demi Bold" size="19.0" />
                </font>
             </Label>
-            <Button fx:id="buyButton1" layoutX="49.0" layoutY="247.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="126.0" text="Buy clothes" textFill="#181718" />
-            <Button fx:id="donateButton1" layoutX="322.0" layoutY="247.0" mnemonicParsing="false" onAction="#donateButton1OnAction" prefHeight="36.0" prefWidth="134.0" text="Donate clothes" />
+            <Button fx:id="buyButton1" layoutX="74.0" layoutY="247.0" mnemonicParsing="false" onAction="#buyButton1OnAction" prefHeight="38.0" prefWidth="126.0" style="-fx-background-color: #000000;" text="Buy clothes" textFill="#fcc0c7">
+               <font>
+                  <Font name="Gabriola" size="24.0" />
+               </font></Button>
+            <Button fx:id="donateButton1" layoutX="322.0" layoutY="247.0" mnemonicParsing="false" onAction="#donateButton1OnAction" prefHeight="36.0" prefWidth="134.0" style="-fx-background-color: #000000;" text="Donate clothes" textFill="#fcc0c7">
+               <font>
+                  <Font name="Gabriola" size="23.0" />
+               </font></Button>
 
 
-            <Button fx:id="closeButton1" layoutX="492.0" layoutY="-2.0" mnemonicParsing="false" onAction="#closeButton1OnAction" prefHeight="31.0" prefWidth="36.0" text="X">
+            <Button fx:id="closeButton1" layoutX="492.0" layoutY="-2.0" mnemonicParsing="false" onAction="#closeButton1OnAction" prefHeight="31.0" prefWidth="36.0" style="-fx-background-color: #000000;" text="X" textFill="#fcc0c7">
                <font>
                   <Font size="13.0" />
                </font>

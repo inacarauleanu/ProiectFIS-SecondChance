@@ -34,6 +34,8 @@ public class SHVeziDonatiiController implements Initializable{
     @FXML
     private Button cancelButton;
     @FXML
+    private Button goBack;
+    @FXML
     private TableView<DonatieSH> donatiiSHTable;
     @FXML
     private TableColumn<DonatieSH, DonatieSH> id_donatieCol;
@@ -97,5 +99,10 @@ public class SHVeziDonatiiController implements Initializable{
         Stage stage = (Stage) cancelButton.getScene().getWindow();
         stage.close();
         Platform.exit();
+    }
+
+    public void goBackOnAction(ActionEvent event){
+        Stage stage1 = (Stage) cancelButton.getScene().getWindow();
+        stage1.close();
     }
 }

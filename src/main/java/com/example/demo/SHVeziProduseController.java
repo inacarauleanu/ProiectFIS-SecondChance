@@ -45,12 +45,7 @@ public class SHVeziProduseController implements Initializable{
     private TableColumn<Produs, Produs> sizeCol;
     @FXML
     private TableColumn<Produs, Produs> priceCol;
-    @FXML
-    private ImageView addImage;
-    @FXML
-    private ImageView refreshImage;
-    @FXML
-    private ImageView printImage;
+
     @FXML
     private TextField denumireTextField;
     @FXML
@@ -63,6 +58,9 @@ public class SHVeziProduseController implements Initializable{
     private TextField idTextField;
     @FXML
     private Label checkIDLabel;
+    @FXML
+    private Button goBack;
+
 
 
 
@@ -85,21 +83,6 @@ public class SHVeziProduseController implements Initializable{
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
         loadDate();
-
-        File brandingFile = new File("images/add.png");
-        Image brandingImage = new Image(brandingFile.toURI().toString());
-        addImage.setImage(brandingImage);
-
-        File brandingFile1 = new File("images/print.png");
-        Image brandingImage1 = new Image(brandingFile1.toURI().toString());
-        printImage.setImage(brandingImage1);
-
-        File brandingFile2 = new File("images/refresh.png");
-        Image brandingImage2 = new Image(brandingFile2.toURI().toString());
-        refreshImage.setImage(brandingImage2);
-
-
-
 
     }
 
@@ -139,95 +122,7 @@ public class SHVeziProduseController implements Initializable{
         sizeCol.setCellValueFactory(new PropertyValueFactory<>("size"));
         colorCol.setCellValueFactory(new PropertyValueFactory<>("color"));
         priceCol.setCellValueFactory(new PropertyValueFactory<>("price"));
-/*
-        Callback<TableColumn<Produs, String>, TableCell<Produs, String>> cellFoctory = (TableColumn<Produs, String> param) -> {
-            // make cell containing buttons
-            final TableCell<Produs, String> cell = new TableCell<Produs, String>() {
-                @Override
-                public void updateItem(String item, boolean empty) {
-                    super.updateItem(item, empty);
-                    //that cell created only on non-empty rows
-                    if (empty) {
-                        setGraphic(null);
-                        setText(null);
 
-                    } else {
-                        FontAwesomeIconView deleteIcon = new FontAwesomeIconView(FontAwesomeIcon.TRASH);
-                        FontAwesomeIconView editIcon = new FontAwesomeIconView(FontAwesomeIcon.PENCIL_SQUARE);
-
-                        deleteIcon.setStyle(
-                                " -fx-cursor: hand ;"
-                                        + "-glyph-size:28px;"
-                                        + "-fx-fill:#ff1744;"
-                        );
-                        editIcon.setStyle(
-                                " -fx-cursor: hand ;"
-                                        + "-glyph-size:28px;"
-                                        + "-fx-fill:#00E676;"
-                        );
-
-
-                        deleteIcon.setOnMouseClicked((MouseEvent event) -> {
-
-                            try {
-                                produs = produseSHTable.getSelectionModel().getSelectedItem();
-                                query = "DELETE FROM produse_sh WHERE id  =" + produs.getId();
-                                connection = DatabaseConnection.getConnection();
-                                preparedStatement = connection.prepareStatement(query);
-                                preparedStatement.execute();
-                                refreshTable();
-
-                            } catch (SQLException ex) {
-                                Logger.getLogger(SHVeziProduseController.class.getName()).log(Level.SEVERE, null, ex);
-                            }
-
-
-                        });
-
-                        editIcon.setOnMouseClicked((MouseEvent event) -> {
-
-                            produs = produseSHTable.getSelectionModel().getSelectedItem();
-                            FXMLLoader loader = new FXMLLoader();
-                            loader.setLocation(getClass().getResource("addProdusSH.fxml"));
-                            try {
-                                loader.load();
-                            } catch (IOException ex) {
-                                Logger.getLogger(SHVeziProduseController.class.getName()).log(Level.SEVERE, null, ex);
-                            }
-
-                            addProdusSHController addProdusController = loader.getController();
-                            addProdusController.setUpdate(true);
-                            addProdusController.setTextField(produs.getId(), produs.getDenumire(),
-                                    produs.getColor(), produs.getSize(), produs.getPrice());
-                            Parent parent = loader.getRoot();
-                            Stage stage = new Stage();
-                            stage.setScene(new Scene(parent));
-                            stage.initStyle(StageStyle.UTILITY);
-                            stage.show();
-
-
-                        });
-
-                        HBox managebtn = new HBox(editIcon, deleteIcon);
-                        managebtn.setStyle("-fx-alignment:center");
-                        HBox.setMargin(deleteIcon, new Insets(2, 2, 0, 3));
-                        HBox.setMargin(editIcon, new Insets(2, 3, 0, 2));
-
-                        setGraphic(managebtn);
-
-                        setText(null);
-
-                    }
-                }
-
-            };
-
-            return cell;
-        };
-        editCol.setCellFactory(cellFoctory);
-       produseSHTable.setItems(produsList);
-
-*/
     }
 
     public void CancelButtonOnAction(ActionEvent event) {
@@ -237,21 +132,6 @@ public class SHVeziProduseController implements Initializable{
     }
 
 
-    /*public void getAddView(MouseEvent mouseEvent) {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(SHVeziProduseController.class.getResource("addProdusSH.fxml"));
-            Scene scene = new Scene(fxmlLoader.load(), 311, 400);
-            Stage stage = new Stage();
-            stage.initStyle(StageStyle.UNDECORATED);
-            stage.setScene(scene);
-            stage.show();
-        }catch(Exception e)
-        {
-            e.printStackTrace();
-            e.getCause();
-        }
-
-    }*/
     int check_data()
     {
         if(idTextField.getText().isEmpty() || denumireTextField.getText().isEmpty() || priceTextField.getText().isEmpty() ||colorTextField.getText().isEmpty()||sizeTextField.getText().isEmpty())
@@ -282,7 +162,7 @@ public class SHVeziProduseController implements Initializable{
             {
                 if(queryResult.getInt(1)==1)
                 {
-                    checkIDLabel.setText("This ID already exists!");
+                    checkIDLabel.setText("This ID already exists in our system!");
                 }else{
                     if(check_data()==1)
                     {statement1.executeUpdate(insertToRegister);
@@ -371,5 +251,10 @@ public class SHVeziProduseController implements Initializable{
             e.getCause();
         }
 
+    }
+
+    public void goBackOnAction(ActionEvent event){
+        Stage stage1 = (Stage) cancelButton.getScene().getWindow();
+        stage1.close();
     }
 }

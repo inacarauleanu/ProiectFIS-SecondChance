@@ -9,13 +9,13 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #fcc0c7;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.SHVeziDonatiiController">
    <children>
-      <TableView fx:id="donatiiSHTable" layoutX="122.0" layoutY="64.0" prefHeight="309.0" prefWidth="399.0">
+      <TableView fx:id="donatiiSHTable" layoutX="40.0" layoutY="76.0" prefHeight="309.0" prefWidth="399.0">
          <columns>
-            <TableColumn fx:id="id_donatieCol" maxWidth="70.0" prefWidth="70.0" text="ID" />
-            <TableColumn fx:id="productNameCol" prefWidth="98.0" text="Name" />
-            <TableColumn fx:id="productColorCol" prefWidth="71.0" text="Color" />
-            <TableColumn fx:id="productSizeCol" prefWidth="71.0" text="Size" />
-            <TableColumn fx:id="dateCol" prefWidth="88.0" text="Donation Date" />
+            <TableColumn fx:id="id_donatieCol" maxWidth="70.0" prefWidth="70.0" style="-fx-color: #fcc0c7;" text="ID" />
+            <TableColumn fx:id="productNameCol" prefWidth="98.0" style="-fx-color: #fcc0c7;" text="Name" />
+            <TableColumn fx:id="productColorCol" prefWidth="71.0" style="-fx-color: #fcc0c7;" text="Color" />
+            <TableColumn fx:id="productSizeCol" prefWidth="71.0" style="-fx-color: #fcc0c7;" text="Size" />
+            <TableColumn fx:id="dateCol" prefWidth="88.0" style="-fx-color: #fcc0c7;" text="Donation Date" />
          </columns>
       </TableView>
       <Text layoutX="40.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Your Store's Donations">
@@ -23,10 +23,11 @@
             <Font size="18.0" />
          </font>
       </Text>
-      <Button fx:id="cancelButton" layoutX="588.0" layoutY="-1.0" mnemonicParsing="false" onAction="#CancelButtonOnAction" prefHeight="31.0" prefWidth="36.0" text="X">
+      <Button fx:id="cancelButton" layoutX="593.0" layoutY="-1.0" mnemonicParsing="false" onAction="#CancelButtonOnAction" prefHeight="25.0" prefWidth="31.0" style="-fx-background-color: #000000;" text="X" textFill="#fcc0c7">
          <font>
             <Font size="13.0" />
          </font>
       </Button>
+      <Button fx:id="goBack" layoutX="512.0" layoutY="353.0" mnemonicParsing="false" onAction="#goBackOnAction" style="-fx-background-color: #000000;" text="Back" textFill="#fcc0c7" />
    </children>
 </AnchorPane>

@@ -87,7 +87,6 @@ public class RegistrationController implements Initializable {
                 if (myChoiceBox.getSelectionModel().getSelectedItem() == "SH") registerSH();
                 if (myChoiceBox.getSelectionModel().getSelectedItem() == "ONG") registerONG();
                 confirmPasswordLabel.setText(" ");
-
             } else {
                 confirmPasswordLabel.setText("Password does not match!");
             }
@@ -96,47 +95,6 @@ public class RegistrationController implements Initializable {
             confirmPasswordLabel.setText(" ");
         }
     }
-/*<<<<<<< HEAD
-    private static String getSalt() throws NoSuchAlgorithmException, NoSuchProviderException
-    {
-        SecureRandom sr = SecureRandom.getInstance("SHA1PRNG", "SUN");
-        byte[] salt = new byte[16];
-        sr.nextBytes(salt);
-        return salt.toString();
-
-    }
-=======*/
-/*private static String getSalt() throws NoSuchAlgorithmException, NoSuchProviderException
-{
-    SecureRandom sr = SecureRandom.getInstance("SHA1PRNG", "SUN");
-    byte[] salt = new byte[16];
-    sr.nextBytes(salt);
-    return salt.toString();
-
-}*/
-//>>>>>>> origin/main
-
-   /* private static MessageDigest getMessageDigest() {
-        MessageDigest md;
-        try {
-            md = MessageDigest.getInstance("SHA-512");
-        } catch (NoSuchAlgorithmException e) {
-            throw new IllegalStateException("SHA-512 does not exist!");
-        }
-        return md;
-    }
-
-private static String encodePassword(String salt, String password) {
-    MessageDigest md = getMessageDigest();
-    md.update(salt.getBytes(StandardCharsets.UTF_8));
-
-    byte[] hashedPassword = md.digest(password.getBytes(StandardCharsets.UTF_8));
-
-    // This is the way a password should be encoded when checking the credentials
-    return new String(hashedPassword, StandardCharsets.UTF_8)
-           .replace("\"", ""); //to be able to save in JSON format
-}*/
-
 
     public void registerUser() throws NoSuchAlgorithmException, NoSuchProviderException {
         DatabaseConnection connection = new DatabaseConnection();
@@ -159,9 +117,7 @@ private static String encodePassword(String salt, String password) {
             sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
         }
         String hasedPassword = sb.toString();
-        //final String secretKey = "ssshhhhhhhhhhh!!!!";
-        //String encryptedPassword  = AES.encrypt(password);
-        //System.out.println(Base64.getDecoder().decode(hasedPassword));
+
         String insertFieldsClient = "INSERT INTO account_user (lastname, firstname, username, password, email) VALUES('";
         String insertFieldsSH = "INSERT INTO admin_sh (lastname, firstname, username, parola, email) VALUES('";
         String insertFieldsONG = "INSERT INTO admin_ong (lastname, firstname, username, parola, email) VALUES('";
@@ -179,11 +135,8 @@ private static String encodePassword(String salt, String password) {
             Statement statement1 = connectionDB.createStatement();
             Statement statement2 = connectionDB.createStatement();
             ResultSet queryResult = statement.executeQuery(verifyUsernameClient);
-//<<<<<<< HEAD
             ResultSet queryResult1 = statement2.executeQuery(verifyEmailClient);
-/*=======
-           ResultSet queryResult1 = statement2.executeQuery(verifyEmailClient);
->>>>>>> origin/main*/
+
             while (queryResult.next()) {
                 if (queryResult.getInt(1) == 1) {
                     checkUsername.setText("This username already exists!");
@@ -213,7 +166,7 @@ private static String encodePassword(String salt, String password) {
             e.printStackTrace();
             e.getCause();
         }}
-//<<<<<<< HEAD
+
     public void registerSH() throws NoSuchAlgorithmException, NoSuchProviderException {
         DatabaseConnection connection = new DatabaseConnection();
         Connection connectionDB = connection.getConnection();

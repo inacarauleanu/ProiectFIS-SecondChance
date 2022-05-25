@@ -13,7 +13,7 @@
    <center>
       <AnchorPane style="-fx-background-color: #fcc0c7;" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="SeeProducts" alignment="CENTER" contentDisplay="BOTTOM" layoutX="19.0" layoutY="225.0" mnemonicParsing="false" onAction="#veziProduseForm" style="-fx-background-color: #fcc0c7;" text="See Prouducts">
+            <Button fx:id="SeeProducts" alignment="CENTER" contentDisplay="BOTTOM" layoutX="19.0" layoutY="225.0" mnemonicParsing="false" onAction="#veziProduseForm" style="-fx-background-color: #fcc0c7;" text="See Products">
                <font>
                   <Font name="Gabriola" size="24.0" />
                </font>
@@ -30,7 +30,7 @@
                   <Font name="Gabriola" size="22.0" />
                </font>
             </Label>
-            <Button fx:id="SeeOrders" alignment="CENTER" contentDisplay="BOTTOM" layoutX="427.0" layoutY="217.0" mnemonicParsing="false" style="-fx-background-color: #fcc0c7;" text="See Orders">
+            <Button fx:id="SeeOrders" alignment="CENTER" contentDisplay="BOTTOM" layoutX="427.0" layoutY="217.0" mnemonicParsing="false" onAction="#veziComenziForm" style="-fx-background-color: #fcc0c7;" text="See Orders">
                <font>
                   <Font name="Gabriola" size="24.0" />
                </font>
@@ -42,7 +42,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="cancelButton" layoutX="574.0" layoutY="2.0" mnemonicParsing="false" onAction="#CancelButtonOnAction" prefHeight="8.0" prefWidth="2.0" style="-fx-background-color: #fcfafa;" text="X" />
+            <Button fx:id="cancelButton" layoutX="571.0" layoutY="-1.0" mnemonicParsing="false" onAction="#CancelButtonOnAction" prefHeight="28.0" prefWidth="28.0" style="-fx-background-color: #000000;" text="X" textFill="#fcc0c7" />
             <ImageView fx:id="iconImageView" fitHeight="144.0" fitWidth="188.0" layoutX="8.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../../../../images/welcome.png" />

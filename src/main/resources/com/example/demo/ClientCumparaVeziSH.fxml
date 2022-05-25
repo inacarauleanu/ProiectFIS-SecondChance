@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #fcc0c7;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.ClientCumparaAlegeSH">
+   <children>
+      <Label alignment="CENTER" layoutX="243.0" layoutY="16.0" text="Available Stores" textAlignment="CENTER">
+         <font>
+            <Font name="Berlin Sans FB Demi Bold" size="19.0" />
+         </font>
+      </Label>
+      <TableView fx:id="SHTable" layoutX="26.0" layoutY="68.0" prefHeight="287.0" prefWidth="290.0">
+        <columns>
+          <TableColumn fx:id="usernameCol" prefWidth="121.59994316101074" style="-fx-color: #fcc0c7;" text="USERNAME" />
+          <TableColumn fx:id="emailCol" prefWidth="110.00006866455078" style="-fx-color: #fcc0c7;" text="EMAIL" />
+            <TableColumn fx:id="idCol" prefWidth="58.0" style="-fx-color: #fcc0c7;" text="ID" />
+        </columns>
+      </TableView>
+      <Label layoutX="367.0" layoutY="68.0" prefHeight="17.0" prefWidth="216.0" text="Please insert the username of the SH ">
+         <font>
+            <Font name="Times New Roman Bold" size="13.0" />
+         </font>
+      </Label>
+      <TextField fx:id="usernameSH" layoutX="367.0" layoutY="111.0" prefHeight="25.0" prefWidth="191.0" promptText="username SH" />
+      <Button fx:id="closeButton1" layoutX="569.0" layoutY="-1.0" mnemonicParsing="false" onAction="#closeButton1OnAction" prefHeight="25.0" prefWidth="32.0" style="-fx-background-color: #000000;" text="X" textFill="#fcc0c7" />
+      <Button fx:id="gotosh" layoutX="418.0" layoutY="183.0" mnemonicParsing="false" onAction="#gotoshOnAction" prefHeight="34.0" prefWidth="71.0" style="-fx-background-color: #000000;" text="Go to SH" textFill="#fcc0c7" />
+      <Button fx:id="goBack" layoutX="537.0" layoutY="355.0" mnemonicParsing="false" onAction="#goBackOnAction" style="-fx-background-color: #000000;" text="Back" textFill="#fcc0c7" />
+      <Label fx:id="warningLabel" layoutX="366.0" layoutY="153.0" prefHeight="17.0" prefWidth="191.0" />
+   </children>
+</AnchorPane>
